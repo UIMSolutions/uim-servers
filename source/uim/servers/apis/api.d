@@ -151,7 +151,7 @@ class DSRVApi : DAPPController {
     auto srvSessionId = reqParameters.get("srvSessionId", "");
     auto srvSession = srvSessions.get(srvSessionId, null);
 
-    if (auto entity = database ? database[srvSession.site.name, pool].createEntity : null) {
+    if (auto entity = database ? database[srvSession.site.name, pool].cloneEntity : null) {
       entity.fromRequest(reqParameters);
           
       // id exists?
