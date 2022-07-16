@@ -3,12 +3,12 @@ module uim.servers.securities.rest;
 @safe:
 import uim.servers;
 
-class DSRVSecurityControllerRest : DSRVController {
+class DSRVSecurityControllerRest : DAPPController {
   this() { super(); }
-  this(DSRVApi myApi) { this(); this.api(myApi); }
+  this(DSRVApi myApi) { this(); } // this.api(myApi); }
 
-  override Json run(STRINGAA parameters) {
-    auto json = super.run(parameters);
+/*   override Json run(STRINGAA parameters) {
+    auto json = super.run(parameters); */
 
     /* if (page && page.app && page.database) {
       if (page.securityOptions.required("login")) {
@@ -80,11 +80,11 @@ class DSRVSecurityControllerRest : DSRVController {
         }
       }
     } */
-    return json; // None;
-  }
+/*     return json; // None;
+  } */
 } 
 auto APPSecurityControllerRest() { return new DSRVSecurityControllerRest; }
-auto APPSecurityControllerRest(DSRVApi myPage) { return new DSRVSecurityControllerRest(myPage); }
+// auto APPSecurityControllerRest(DSRVApi myPage) { return new DSRVSecurityControllerRest(myPage); }
 
 /*
 requestHTTP(reqParameters.get("httpMode", "")~"://"~reqParameters.get("Host", "")~"/api/v1/sessions?id="~page.sessionId,

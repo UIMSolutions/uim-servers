@@ -3,12 +3,12 @@ module uim.servers.securities.security;
 @safe:
 import uim.servers;
 
-class DSRVSecurityController : DSRVController {
+class DSRVSecurityController : DAPPController {
   this() { super(); }
 
-  override Json run(STRINGAA parameters) {
+  /* override Json run(STRINGAA parameters) {
     auto json = super.run(parameters);
-   
+   */ 
     /* if (page) {
       debug writeln("has page");
       auto srvSession = page.hasGlobalSession ? page.globalSession : readOrCreateSession(page._request, page._response);
@@ -85,8 +85,8 @@ class DSRVSecurityController : DSRVController {
     debug writeln("In DSRVSecurityController");
     debug writeln(parameters);
     debug writeln("--------------------------------"); */
-    return json;
-  }
+/*     return json;
+  } */
 } 
 auto SRVSecurityController() { return new DSRVSecurityController; }
-auto SRVSecurityController(DSRVApi myApi) { return SRVSecurityController.api(myApi); }
+auto SRVSecurityController(DSRVApi myApi) { return SRVSecurityController; } //.api(myApi); }

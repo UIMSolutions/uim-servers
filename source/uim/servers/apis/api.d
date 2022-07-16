@@ -40,7 +40,7 @@ class DSRVApi : DAPPController {
   mixin(SProperty!("bool", "entityRequired"));  
   mixin(SProperty!("Json", "entity"));  
 
-  mixin(SProperty!("DSRVController", "securityController")); 
+  mixin(SProperty!("DAPPController", "securityController")); 
   mixin(SProperty!("DSRVSecurityOptions", "securityOptions"));
   O securityOptions(this O)(bool[string] newOptions) { this.securityOptions(APPSecurityOptions(newOptions)); return cast(O)this; }  
 

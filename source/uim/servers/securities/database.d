@@ -6,7 +6,7 @@ import uim.servers;
 // Security Chack using database
 class DSRVSecurityControllerDatabase : DSRVSecurityController {
   this() { super(); }
-  this(DSRVApi myApi) { this(); this.api(myApi); }
+  this(DSRVApi myApi) { this(); } // this.api(myApi); }
 
   /* override Json run(STRINGAA parameters) {
     auto json = super.run(parameters);
@@ -119,4 +119,4 @@ class DSRVSecurityControllerDatabase : DSRVSecurityController {
   }*/
 } 
 auto SRVSecurityControllerDatabase() { return new DSRVSecurityControllerDatabase; }
-auto SRVSecurityControllerDatabase(DSRVApi myApi) { return new DSRVSecurityControllerDatabase(myApi); }
+// auto SRVSecurityControllerDatabase(DSRVApi myApi) { return new DSRVSecurityControllerDatabase(myApi); }
