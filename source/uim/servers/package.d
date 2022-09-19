@@ -34,9 +34,9 @@ public import uim.servers.mixins;
 public import uim.servers.sessions;
 
 
-bool notValidSession(string sessionToken, STRINGAA parameters = null) { return !isValidSession(sessionToken, parameters); }
+bool notValidSession(string sessionToken, string[string] parameters = null) { return !isValidSession(sessionToken, parameters); }
 
-bool isValidSession(string sessionToken, STRINGAA parameters = null) {
+bool isValidSession(string sessionToken, string[string] parameters = null) {
   if (sessionToken == "demo") return true;
   return false;
 }
