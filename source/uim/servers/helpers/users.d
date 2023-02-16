@@ -22,7 +22,7 @@ string getUserId(STRINGAA reqParameters) {
  */
 // #region getUser
 auto getUser(Json sessionToken, DETBBase database, string id) {
-  DOOPEntity user;
+  DEntity user;
 
   if (database) {
     if (sessionToken != Json(null) && "userId" in sessionToken) // Try to find user from sessionToken 
@@ -44,7 +44,7 @@ auto getUser(DETBBase database, UUID id) {
 // #endregion getUser
 
 auto getUserSites(DETBBase database, string id) {
-  DOOPEntity[] dbSites;
+  DEntity[] dbSites;
   if (auto dbUser = getUser(database, id)) // User in db exists 
     foreach (siteId; dbUser["sites"].split(";")) // For every siteId  
       if (auto dbSite = getSite(database, UUID(siteId))) // If site exists in db 

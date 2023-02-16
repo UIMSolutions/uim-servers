@@ -38,7 +38,7 @@ auto getEntity(Json sessionToken, DETBBase database, string id) {
 } 
 
 auto getEntitySites(DETBBase database, string id) {
-  DOOPEntity[] sites;
+  DEntity[] sites;
   if (auto entity = getEntity(database, id)) {
     foreach (entityId; entity["sites"].split(";")) {
       if (auto site = getSite(database, UUID(entityId))) sites ~= site;

@@ -35,7 +35,7 @@ auto getSite(DETBBase database, UUID id) {
 // #endregion getSite
 
 auto getSiteApps(DETBBase database, string id) {
-  DOOPEntity[] apps;
+  DEntity[] apps;
   if (auto site = getSite(database, id)) 
     foreach (appId; site["apps"].split(";")) 
       if (auto app = getApp(database, appId)) apps ~= app;

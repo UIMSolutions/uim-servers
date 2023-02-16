@@ -16,7 +16,6 @@ public import uim.html;
 // // public import uim.web;
 // public import uim.entities;
 public import uim.jsonbase;
-public import uim.entities;
 public import uim.entitybase;
 public import uim.apps;
 

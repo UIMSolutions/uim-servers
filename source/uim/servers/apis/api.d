@@ -214,7 +214,7 @@ class DSRVApi : DAPPController {
     auto srvSession = srvSessions.get(srvSessionId, null);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DOOPEntity entity = database[srvSession.site.name, pool].findOne(["id":id]);
+    DEntity entity = database[srvSession.site.name, pool].findOne(["id":id]);
     if (!entity) { // Entity not found :-(
       result["status"] = 409;
       result["lastError"] = 409;
@@ -254,7 +254,7 @@ class DSRVApi : DAPPController {
 
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DOOPEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id":id]);
+    DEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id":id]);
     
     if (!entity) { // Entity not found :-(
       result["status"] = 409;
@@ -298,7 +298,7 @@ class DSRVApi : DAPPController {
     auto srvSession = srvSessions.get(srvSessionId, null);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DOOPEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id": id]);
+    DEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id": id]);
     if (!entity) {
       result["status"] = 409;
       result["lastError"] = 409;

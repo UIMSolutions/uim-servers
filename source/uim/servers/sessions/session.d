@@ -13,13 +13,13 @@ class DSRVSession {
   Session _httpSession;
 
   mixin(SProperty!("long", "lastAccessedOn"));
-  mixin(SProperty!("DOOPEntity", "login"));
-  mixin(SProperty!("DOOPEntity", "session"));
-  mixin(SProperty!("DOOPEntity", "site"));
-  mixin(SProperty!("DOOPEntity", "account"));
-  mixin(SProperty!("DOOPEntity", "user"));
-  mixin(SProperty!("DOOPEntity", "password"));
-  mixin(SProperty!("DOOPEntity", "entity"));
+  mixin(SProperty!("DEntity", "login"));
+  mixin(SProperty!("DEntity", "session"));
+  mixin(SProperty!("DEntity", "site"));
+  mixin(SProperty!("DEntity", "account"));
+  mixin(SProperty!("DEntity", "user"));
+  mixin(SProperty!("DEntity", "password"));
+  mixin(SProperty!("DEntity", "entity"));
 
   bool valid(string[] factors) {
     foreach(factor; factors) 
