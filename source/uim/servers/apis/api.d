@@ -3,7 +3,7 @@ module uim.servers.apis.api;
 @safe:
 import uim.servers;
 
-class DSRVApi : DAPPController {
+class DSRVApi : DController {
 	this() { super(); 
     this
     .name("data")
@@ -40,7 +40,7 @@ class DSRVApi : DAPPController {
   mixin(SProperty!("bool", "entityRequired"));  
   mixin(SProperty!("Json", "entity"));  
 
-  mixin(SProperty!("DAPPController", "securityController")); 
+  mixin(SProperty!("DController", "securityController")); 
   mixin(SProperty!("DSRVSecurityOptions", "securityOptions"));
   O securityOptions(this O)(bool[string] newOptions) { this.securityOptions(APPSecurityOptions(newOptions)); return cast(O)this; }  
 

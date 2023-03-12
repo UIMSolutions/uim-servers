@@ -3,7 +3,7 @@ module uim.servers.securities.security;
 @safe:
 import uim.servers;
 
-class DSRVSecurityController : DAPPController {
+class DSRVSecurityController : DController {
   this() { super(); }
 
   /* override Json run(STRINGAA parameters) {

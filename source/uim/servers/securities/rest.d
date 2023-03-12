@@ -3,7 +3,7 @@ module uim.servers.securities.rest;
 @safe:
 import uim.servers;
 
-class DSRVSecurityControllerRest : DAPPController {
+class DSRVSecurityControllerRest : DController {
   this() { super(); }
   this(DSRVApi myApi) { this(); } // this.api(myApi); }
 
