@@ -3,7 +3,7 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.checks.sessions.account;
+module uim.servers.controllers.components.checks.sessions.account;
 
 @safe:
 import uim.servers;
@@ -22,7 +22,7 @@ class DSessionHasAccountCheck : DSessionExistsCheck {
     debug writeln(moduleName!DSessionHasAccountCheck~":DSessionHasAccountCheck::execute");
     if (!super.execute(options)) { return false; } 
 
-    auto session = getSession(options);
+    auto session = getAppSession(options);
     if (!session.account) { // account missing 
       this.error("Account Missing");
       return false;

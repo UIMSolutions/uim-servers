@@ -3,7 +3,7 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.checks.sessions.siteid;
+module uim.servers.controllers.components.checks.sessions.siteid;
 
 @safe:
 import uim.servers;
@@ -22,7 +22,7 @@ class DSessionHasSiteIdCheck : DSessionHasSessionCheck {
     debug writeln(moduleName!DSessionHasSiteIdCheck~":DSessionHasSiteIdCheck::execute");
     if (!super.execute(options)) { return false; }
 
-    auto session = getSession(options).session;
+    auto session = getAppSession(options).session;
     if (!session["siteId"]) { // site id in session missing 
       this.error("appsession_siteid_missing");
       return false; 

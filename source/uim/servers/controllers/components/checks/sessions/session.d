@@ -3,7 +3,7 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.checks.sessions.session;
+module uim.servers.controllers.components.checks.sessions.session;
 
 @safe:
 import uim.servers;
@@ -22,7 +22,7 @@ class DSessionHasSessionCheck : DSessionExistsCheck {
     debug writeln(moduleName!DSessionHasSessionCheck~":DSessionHasSessionCheck::execute");
     if (!super.execute(options)) { return false; }
 
-    auto session = getSession(options).session;
+    auto session = getAppSession(options).session;
     if (!session) { // session missing 
       this.error("appsession_session_missing");
       return false; 
