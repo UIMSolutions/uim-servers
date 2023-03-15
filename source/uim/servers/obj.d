@@ -3,8 +3,11 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers;
+module uim.servers.server;
 
-public import uim.servers.controllers.actions;
-public import uim.servers.controllers.components;
-public import uim.servers.controllers.pages;
+@safe:
+import uim.servers;
+
+class DServerObject {
+  this() {}
+}

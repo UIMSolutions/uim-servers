@@ -3,8 +3,6 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.components.checks;
+module uim.servers.authentications;
 
-public {
-	import uim.servers.controllers.components.checks.sessions;
-}
+public import uim.servers.authentications.authentication;
