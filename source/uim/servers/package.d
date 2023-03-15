@@ -9,16 +9,14 @@ public import std.uuid;
 
 public import vibe.d;
 
-public import uim.core;
-public import uim.oop;
-public import uim.javascript;
-public import uim.html;
-public import uim.models;
-public import uim.jsonbase;
-public import uim.entitybase;
-public import uim.apps;
+mixin ImportUimBase;
 
-public import uim.servers.apis;
+public { // Web based libraries
+  import uim.javascript;
+  import uim.html;
+  import uim.mvc;
+}
+
 public import uim.servers.apis;
 public import uim.servers.data.helpers;
 public import uim.servers.data.messages;

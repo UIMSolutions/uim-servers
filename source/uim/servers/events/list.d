@@ -6,8 +6,7 @@ import uim.servers;
 /**
  * The Event List
  */
-class EventList // implements ArrayAccess, Countable
-{
+class EventList { // implements ArrayAccess, Countable
     // Events list
     protected IEvent[] _events;
 

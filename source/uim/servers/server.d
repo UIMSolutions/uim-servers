@@ -3,7 +3,7 @@ module uim.servers.server;
 @safe:
 import uim.servers;
 
-class DSRVServer : DAPPApplication {
+class DSRVServer : DApplication {
 	this() { super(); 
     this
     .securityOptions(SRVSecurityOptions)
