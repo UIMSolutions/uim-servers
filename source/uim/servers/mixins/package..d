@@ -13,7 +13,7 @@ mixin template ImportUim() {
   public import uim.html;
   public import uim.javascript;
   public import uim.bootstrap;
-  public import uim.entities;
+  public import uim.models;
 }
 
 template ImportLocal(string name) {

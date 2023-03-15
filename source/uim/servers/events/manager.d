@@ -207,29 +207,29 @@ class DEventManager : IEventManager {
  */    }
 
     //
-    /* IEvent dispatch(string eventName) {
-      auto event = new DEvent(eventName);
+    IEvent dispatch(string eventName) {
+      auto myEvent = new DEvent(eventName);
 
-      auto listeners = listeners(event.name);
-      if (_trackEvents) { /* addEventToList(event); */ }
+      auto listeners = listeners(myEvent.name);
+      /* if (_trackEvents) { /* addEventToList(event); * / }
 
-/*       if (_isGlobal && static::instance().isTrackingEvents()) {
+       if (_isGlobal && static::instance().isTrackingEvents()) {
           static::instance().addEventToList(event);
-      }
- * /
-      if (listeners.empty) return event;
+      } */
+
+      if (listeners.empty) return myEvent;
 
       foreach (listener; listeners) {
-        if (event.isStopped()) break;
+        /* if (event.isStopped()) break;
 
-/*         auto result = _callListener(listener["callable"], event);
+        auto result = _callListener(listener["callable"], event);
         if (result == false) event.stopPropagation();
-        if (result !is null) event.result(result);
- * /      }
+        if (result !is null) event.result(result); */
+       }
 
-      return event;
-    } */
-
+      return myEvent;
+    }
+/*
     // Calls a listener.
 /*      *
      * @param callable listener The listener to trigger.
@@ -298,7 +298,7 @@ class DEventManager : IEventManager {
     O addEventToList(this O)(IEvent event) {
       if (_eventList) _eventList.add(event);
       return cast(O)this; }
-version(test_uim_apps) {
+version(test_uim_servers) {
   unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);
         // TODO Add tests
@@ -309,7 +309,7 @@ version(test_uim_apps) {
       _trackEvents = enabled;
 
       return cast(O)this; }
-version(test_uim_apps) {
+version(test_uim_servers) {
   unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);
         // TODO Add tests
@@ -318,7 +318,7 @@ version(test_uim_apps) {
     // Returns whether this manager is set up to track events
     bool isTrackingEvents() {
       return _trackEvents && _eventList; }
-version(test_uim_apps) {
+version(test_uim_servers) {
   unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);
         // TODO Add tests
@@ -331,7 +331,7 @@ version(test_uim_apps) {
       _trackEvents = true;
 
       return cast(O)this; }
-version(test_uim_apps) {
+version(test_uim_servers) {
   unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);
         // TODO Add tests
@@ -343,15 +343,15 @@ version(test_uim_apps) {
       _trackEvents = false;
 
       return cast(O)this; }
-version(test_uim_apps) {
+version(test_uim_servers) {
   unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);
         // TODO Add tests
 }}
 
-    // Debug friendly object properties.
-    public STRINGAA __debugInfo() {
-      STRINGAA properties;
+// Debug friendly object properties.
+public STRINGAA __debugInfo() {
+  STRINGAA properties;
 /*         properties = get_object_vars(this);
         properties["_generalManager"] = "(object) EventManager";
         properties["_listeners"] = [];
@@ -381,4 +381,5 @@ version(test_uim_apps) {
         return properties;
     }*/
     return null;
+  }
 }

@@ -3,10 +3,10 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.apps.controllers.pages.login2;
+module uim.servers.controllers.pages.login2;
 
 @safe:
-import uim.apps;
+import uim.servers;
 
 class DAPPLogin2PageController : DPageController {
   mixin(ControllerThis!("APPLogin2PageController"));
