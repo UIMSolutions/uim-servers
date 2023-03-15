@@ -8,8 +8,8 @@ module uim.servers.controllers.pages.lostpw;
 @safe:
 import uim.servers;
 
-class DAPPLostPasswordPageController : DPageController {
-  mixin(ControllerThis!("APPLostPasswordPageController"));
+class DLostPasswordPageController : DPageController {
+  mixin(ControllerThis!("LostPasswordPageController"));
 
 override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
@@ -21,15 +21,15 @@ override void initialize(Json configSettings = Json(null)) {
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Passwort vergessen</a></li>
 </ol>`)
       .title("Passwort vergessen")
-      .view(APPLostPasswordView(this));
+      .view(LostPasswordView(this));
   }
 }
-mixin(ControllerCalls!("APPLostPasswordPageController"));
+mixin(ControllerCalls!("LostPasswordPageController"));
 
 version(test_uim_mvc) { unittest {
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DAPPLostPasswordPageController); 
+		testPageController(new DLostPasswordPageController); 
 
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(APPLostPasswordPageController); 
+		testPageController(LostPasswordPageController); 
 }}

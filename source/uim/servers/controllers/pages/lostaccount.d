@@ -8,8 +8,8 @@ module uim.servers.controllers.pages.lostaccount;
 @safe:
 import uim.servers;
 
-class DAPPLostAccountPageController : DPageController {
-  mixin(ControllerThis!("APPLostAccountPageController"));
+class DLostAccountPageController : DPageController {
+  mixin(ControllerThis!("LostAccountPageController"));
 
 override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
@@ -22,15 +22,15 @@ override void initialize(Json configSettings = Json(null)) {
 </ol>`)
       .title("Kennung vergessen")
       .view(
-        APPLostAccountView(this));
+        LostAccountView(this));
   }
 }
-mixin(ControllerCalls!("APPLostAccountPageController"));
+mixin(ControllerCalls!("LostAccountPageController"));
 
 version(test_uim_mvc) { unittest {
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DAPPLostAccountPageController); 
+		testPageController(new DLostAccountPageController); 
 
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(APPLostAccountPageController); 
+		testPageController(LostAccountPageController); 
 }}

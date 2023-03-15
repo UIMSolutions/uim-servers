@@ -8,8 +8,8 @@ module uim.servers.controllers.pages.register;
 @safe:
 import uim.servers;
 
-class DAPPRegisterPageController : DPageController {
-  mixin(ControllerThis!("APPRegisterPageController"));      
+class DRegisterPageController : DPageController {
+  mixin(ControllerThis!("RegisterPageController"));      
   
 override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
@@ -23,12 +23,12 @@ override void initialize(Json configSettings = Json(null)) {
       .title("Registrierung");
   }
 }
-mixin(ControllerCalls!("APPRegisterPageController"));
+mixin(ControllerCalls!("RegisterPageController"));
 
 version(test_uim_servers) { unittest {
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DAPPRegisterPageController); 
+		testPageController(new DRegisterPageController); 
 
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(APPRegisterPageController); 
+		testPageController(RegisterPageController); 
 }}

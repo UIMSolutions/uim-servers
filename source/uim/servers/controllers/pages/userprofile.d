@@ -8,8 +8,8 @@ module uim.servers.controllers.pages.userprofile;
 @safe:
 import uim.servers;
 
-class DAPPUserProfilePageController : DPageController {
-  mixin(ControllerThis!("APPUserProfilePageController"));
+class DUserProfilePageController : DPageController {
+  mixin(ControllerThis!("UserProfilePageController"));
 
 override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
@@ -23,12 +23,12 @@ override void initialize(Json configSettings = Json(null)) {
       .title("Registrierung");
   }
 }
-mixin(ControllerCalls!("APPUserProfilePageController"));
+mixin(ControllerCalls!("UserProfilePageController"));
 
 version(test_uim_servers) { unittest {
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DAPPUserProfilePageController); 
+		testPageController(new DUserProfilePageController); 
 
     writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(APPUserProfilePageController); 
+		testPageController(UserProfilePageController); 
 }}
