@@ -1,7 +1,7 @@
-module uim.mvc.views.login2;
+module uim.servers.views.login2;
 
 @safe:
-import uim.mvc;
+import uim.servers;
 
 class DLogin2View : DView {
   mixin(ViewThis!("Login2View"));

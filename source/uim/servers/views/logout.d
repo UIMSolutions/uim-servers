@@ -3,10 +3,10 @@
 *	License: Licensed under Apache 2 [https://apache.org/licenses/LICENSE-2.0.txt]                                       *
 *	Authors: UI Manufaktur UG Team, Ozan Nurettin Süel (Sicherheitsschmiede)										                         * 
 ***********************************************************************************************************************/
-module uim.mvc.views.logout;
+module uim.servers.views.logout;
 
 @safe:
-import uim.mvc;
+import uim.servers;
 
 class DLogoutView : DView {
   mixin(ViewThis!("LogoutView"));

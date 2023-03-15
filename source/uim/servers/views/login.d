@@ -3,10 +3,10 @@
 *	License: Licensed under Apache 2 [https://apache.org/licenses/LICENSE-2.0.txt]                                       *
 *	Authors: UI Manufaktur UG Team, Ozan Nurettin Süel (Sicherheitsschmiede)										                         * 
 ***********************************************************************************************************************/
-module uim.mvc.views.login;
+module uim.servers.views.login;
 
 @safe:
-import uim.mvc;
+import uim.servers;
 
 class DLoginView : DView {
   mixin(ViewThis!("LoginView"));
@@ -44,7 +44,7 @@ class DLoginView : DView {
         BS5Row("messages", ["mt-2 mb-2"]),
         BS5Row("logo", ["text-center"],  H5A(["href":"https://www.sicherheitsschmiede.de"], 
           H5Img(["src":"/img/logo.png", "height":"80", "alt":"Sicherheitsschmiede - Sicher im Internet"]))),
-        BS5Row("form", LoginForm.toH5(options)),
+        BS5Row("form", /* LoginForm.toH5(options) */),
         BS5Row("additional", H5Div(["text-center mb-4"], H5Div(["text-center text-muted mt-3"], 
           H5String("Noch kein Konto bei uns? "), H5A(["href":"/register", "tabindex":"-1"], "Registrieren"))))
       )

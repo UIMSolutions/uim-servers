@@ -11,7 +11,7 @@ import uim.servers;
 void uimLogin2Page(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimLogin2Page~":uimLogin2Page");
 
-  APPLogin2PageController(thisServer).request(req, res);
+  Login2PageController(thisServer).request(req, res);
 }
 
 void uimLogin2Action(HTTPServerRequest req, HTTPServerResponse res) {
