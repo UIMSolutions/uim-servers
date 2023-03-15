@@ -3,18 +3,18 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.mvc.controllers.checks.appsessions;
+module uim.servers.controllers.checks.sessions;
 
 @safe:
-import uim.mvc;
+import uim.servers;
 
 // Main
-public import uim.mvc.controllers.checks.appsessions.appsession;
+public import uim.servers.controllers.checks.sessions.session;
 
 // Modules
-public import uim.mvc.controllers.checks.appsessions.account;
-public import uim.mvc.controllers.checks.appsessions.login;
-public import uim.mvc.controllers.checks.appsessions.session;
-public import uim.mvc.controllers.checks.appsessions.site;
-public import uim.mvc.controllers.checks.appsessions.siteid;
+public import uim.servers.controllers.checks.sessions.account;
+public import uim.servers.controllers.checks.sessions.login;
+public import uim.servers.controllers.checks.sessions.session;
+public import uim.servers.controllers.checks.sessions.site;
+public import uim.servers.controllers.checks.sessions.siteid;
 

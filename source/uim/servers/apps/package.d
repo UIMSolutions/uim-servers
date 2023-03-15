@@ -3,5 +3,5 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module source.uim.servers.apps;
+module uim.servers.apps;
 
