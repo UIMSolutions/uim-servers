@@ -10,11 +10,11 @@ class DSRVApi : DController {
     .mimetype("text/json")
     .siteName("central");
   }
-	this(DSRVServer aServer) { this().app(aServer); }
+	this(DServer aServer) { this().app(aServer); }
 	this(string aName) { this().name(aName); }
-	this(DSRVServer aServer, string aName) { this().server(aServer).name(aName); }
+	this(DServer aServer, string aName) { this().server(aServer).name(aName); }
 
-	mixin(SProperty!("DSRVServer", "server"));
+	mixin(SProperty!("DServer", "server"));
   mixin(SProperty!("string[]", "requiredChecks"));
 
   mixin(SProperty!("string", "api"));
@@ -322,9 +322,9 @@ class DSRVApi : DController {
   }
 }
 auto SRVApi() { return new DSRVApi(); }
-auto SRVApi(DSRVServer aServer) { return SRVApi.server(aServer); }
+auto SRVApi(DServer aServer) { return SRVApi.server(aServer); }
 auto SRVApi(string aName) { return SRVApi.name(aName); }
-auto SRVApi(DSRVServer aServer, string aName) { return SRVApi.server(aServer).name(aName); }
+auto SRVApi(DServer aServer, string aName) { return SRVApi.server(aServer).name(aName); }
 
 unittest {
 	assert(SRVApi.name("newName").name == "newName");

@@ -3,7 +3,7 @@ module uim.servers.server;
 @safe:
 import uim.servers;
 
-class DSRVServer : DApplication {
+class DServer : DApplication {
 	this() { super(); 
     this
     .securityOptions(SRVSecurityOptions)
@@ -22,6 +22,6 @@ class DSRVServer : DApplication {
     }
   } */
 }
-auto SRVServer() { return new DSRVServer(); }
-auto SRVServer(string aName) { return SRVServer.name(aName); }
-auto SRVServer(string aName, string aRootPath) { return SRVServer(aName).rootPath(aRootPath); }
+auto Server() { return new DServer(); }
+auto Server(string aName) { return Server.name(aName); }
+auto Server(string aName, string aRootPath) { return Server(aName).rootPath(aRootPath); }

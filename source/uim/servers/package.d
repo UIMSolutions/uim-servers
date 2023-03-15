@@ -17,18 +17,21 @@ public { // Web based libraries
   import uim.mvc;
 }
 
-public import uim.servers.apis;
-public import uim.servers.data.helpers;
-public import uim.servers.data.messages;
-public import uim.servers.data.helpers;
-public import uim.servers.data.messages;
-public import uim.servers.events;
-public import uim.servers.server;
-public import uim.servers.securities;
-public import uim.servers.helpers;
-public import uim.servers.mixins;
-public import uim.servers.sessions;
-
+public {
+  import uim.servers.apis;
+  import uim.servers.controllers;
+  import uim.servers.data.helpers;
+  import uim.servers.data.messages;
+  import uim.servers.data.helpers;
+  import uim.servers.data.messages;
+  import uim.servers.events;
+  import uim.servers.server;
+  import uim.servers.securities;
+  import uim.servers.helpers;
+  import uim.servers.mixins;
+  import uim.servers.sessions;
+  import uim.servers.views;
+}
 
 bool notValidSession(string sessionToken, string[string] parameters = null) { return !isValidSession(sessionToken, parameters); }
 
