@@ -5,6 +5,9 @@
 **********************************************************************************************************/
 module uim.servers.authentications.authentication;
 
+@safe:
+import uim.servers;
+
 class DAuthentication : IAuthentication {
   this() {}
 }

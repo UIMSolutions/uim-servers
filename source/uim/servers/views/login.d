@@ -44,7 +44,7 @@ class DLoginView : DView {
         BS5Row("messages", ["mt-2 mb-2"]),
         BS5Row("logo", ["text-center"],  H5A(["href":"https://www.sicherheitsschmiede.de"], 
           H5Img(["src":"/img/logo.png", "height":"80", "alt":"Sicherheitsschmiede - Sicher im Internet"]))),
-        BS5Row("form", /* LoginForm.toH5(options) */),
+        BS5Row("form", LoginForm.toH5(options)),
         BS5Row("additional", H5Div(["text-center mb-4"], H5Div(["text-center text-muted mt-3"], 
           H5String("Noch kein Konto bei uns? "), H5A(["href":"/register", "tabindex":"-1"], "Registrieren"))))
       )

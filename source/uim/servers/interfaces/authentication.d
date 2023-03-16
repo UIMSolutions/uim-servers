@@ -4,5 +4,4 @@ module uim.servers.interfaces.authentication;
 import uim.servers;
 
 interface IAuthentication {
-
 }
