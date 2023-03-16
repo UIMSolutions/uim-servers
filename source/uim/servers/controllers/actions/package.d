@@ -8,4 +8,6 @@ module uim.servers.controllers.actions;
 public {
   import uim.servers.controllers.actions.login;
   import uim.servers.controllers.actions.login2;
+  import uim.servers.controllers.actions.signin;
+  import uim.servers.controllers.actions.signup;
 }
