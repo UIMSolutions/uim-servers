@@ -80,3 +80,7 @@ void `~callName~`Delete(HTTPServerRequest req, HTTPServerResponse res) {
 }
   `;
 }
+
+DServer thisServer;
+string[size_t] errorMessages;
+

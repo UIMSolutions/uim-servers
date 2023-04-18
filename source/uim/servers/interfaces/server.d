@@ -4,5 +4,5 @@ module uim.servers.interfaces.server;
 import uim.servers;
 
 interface IServer {
-
+  void request(HTTPServerRequest newRequest, HTTPServerResponse newResponse);  
 }
