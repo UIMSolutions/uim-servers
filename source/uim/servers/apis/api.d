@@ -157,7 +157,7 @@ class DSRVApi : DController {
     auto srvSession = srvSessions.get(srvSessionId, null);
 
     if (auto entity = database ? database[srvSession.site.name, pool].createFromTemplate : null) {
-      entity.fromRequest(reqParameters);
+      entity.readFromRequest(reqParameters);
           
       // id exists?
       auto id = entity.id.toString;
@@ -277,7 +277,7 @@ class DSRVApi : DController {
     result["lastError"] = 0;
     
     // Update entity
-    entity.fromRequest(reqParameters);
+    entity.readFromRequest(reqParameters);
 
     entity.save;
     result["entity"] = entity.toJson;
