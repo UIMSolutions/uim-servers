@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.components.checks.sessions.siteid;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSessionHasSiteIdCheck : DSessionHasSessionCheck {
   mixin(ControllerComponentThis!("SessionHasSiteIdCheck"));

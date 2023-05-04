@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.actions.signup;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSignUpActionController : DSystemActionController {
   mixin(ControllerThis!("SignUpActionController"));

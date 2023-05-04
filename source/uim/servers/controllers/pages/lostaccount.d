@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.lostaccount;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLostAccountPageController : DPageController {
   mixin(ControllerThis!("LostAccountPageController"));

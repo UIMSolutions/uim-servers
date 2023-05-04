@@ -1,7 +1,7 @@
 module uim.servers.helpers.users;
 
-@safe:
 import uim.servers;
+@safe:
 
 /* string getUserId(DETBBase database, string sessionId, STRINGAA reqParameters) { 
   auto dbUser = getUser(database, sessionId);

@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.routers.login2;
 
-@safe:
 import uim.servers;
+@safe:
 
 void uimLogin2Page(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimLogin2Page~":uimLogin2Page");

@@ -1,7 +1,7 @@
 module uim.servers.securities.rest;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVSecurityControllerRest : DController {
   this() { super(); }

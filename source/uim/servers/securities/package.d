@@ -1,7 +1,7 @@
 module uim.servers.securities;
 
-@safe:
 import uim.servers;
+@safe:
 
 public import uim.servers.securities.database;
 public import uim.servers.securities.rest;

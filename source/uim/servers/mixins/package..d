@@ -1,7 +1,7 @@
 module uim.servers.mixins;
 
-@safe:
 import uim.servers;
+@safe:
 
 mixin template ImportDubs() {
   public import vibe.d;

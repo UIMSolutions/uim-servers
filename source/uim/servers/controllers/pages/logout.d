@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.logout;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLogoutPageController : DPageController {  
   mixin(ControllerThis!("LogoutPageController"));

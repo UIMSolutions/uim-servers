@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.apis.register;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVRegisterData : DSRVApi {
   this() { super(); }

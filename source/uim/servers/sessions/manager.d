@@ -1,6 +1,6 @@
 module uim.servers.sessions.manager;
 
-@safe:
 import uim.servers;
+@safe:
 
 DSRVSession[string] sessions;

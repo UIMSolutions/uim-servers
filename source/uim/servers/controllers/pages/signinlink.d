@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.signinlink;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSignInLinkPageController : DPageController {
   mixin(ControllerThis!("SignInLinkPageController"));

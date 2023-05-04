@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.server;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DServer : DApplication, IServer  {
 	this() { super(); 

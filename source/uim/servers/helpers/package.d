@@ -1,7 +1,7 @@
 module uim.servers.helpers;
 
-@safe:
 import uim.servers;
+@safe:
 
 public import uim.servers.helpers.accounts;
 public import uim.servers.helpers.apps;

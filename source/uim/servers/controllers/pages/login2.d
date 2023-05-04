@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.login2;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLogin2PageController : DPageController {
   mixin(ControllerThis!("Login2PageController"));

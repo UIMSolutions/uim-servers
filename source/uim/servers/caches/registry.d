@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.caches.registry;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DCacheRegistry : DRegistry!DCache{
   this() {}

@@ -1,7 +1,7 @@
 module uim.servers.events.list;
 
-@safe:
 import uim.servers;
+@safe:
 
 /**
  * The Event List

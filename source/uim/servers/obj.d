@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.obj;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DServerObject {
   this() {}

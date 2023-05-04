@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.helpers.entities;
 
-@safe:
 import uim.servers;
+@safe:
 
 string getEntityId(HTTPServerRequest req, STRINGAA reqParameters) {
   return reqParameters.get("entity_id", reqParameters.get("id", ""));

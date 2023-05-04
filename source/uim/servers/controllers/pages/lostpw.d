@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.lostpw;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLostPasswordPageController : DPageController {
   mixin(ControllerThis!("LostPasswordPageController"));

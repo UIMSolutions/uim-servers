@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.register;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DRegisterPageController : DPageController {
   mixin(ControllerThis!("RegisterPageController"));      

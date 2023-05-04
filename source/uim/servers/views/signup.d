@@ -5,8 +5,8 @@
 ***********************************************************************************************************************/
 module uim.servers.views.signup;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSignUpView : DView {
   mixin(ViewThis!("SignUpView"));

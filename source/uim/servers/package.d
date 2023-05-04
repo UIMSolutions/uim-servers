@@ -5,7 +5,6 @@
 **********************************************************************************************************/
 module uim.servers;
 
-@safe:
 public import std.algorithm;
 public import std.digest.sha;
 public import std.stdio;
@@ -15,9 +14,10 @@ public import std.uuid;
 public import vibe.d;
 
 mixin ImportUimBase;
+@safe:
 
 public { // Web based libraries
-  import uim.javascript;
+  import langs.javascript;
   import uim.html;
   import uim.mvc;
 }

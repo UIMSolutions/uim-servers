@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controller;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVController {
   this() {}

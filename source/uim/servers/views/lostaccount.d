@@ -5,8 +5,8 @@
 ***********************************************************************************************************************/
 module uim.servers.views.lostaccount;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLostAccountView : DView {
   mixin(ViewThis!("LostAccountView"));

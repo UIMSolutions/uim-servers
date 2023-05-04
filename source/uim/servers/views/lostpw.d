@@ -1,7 +1,7 @@
 module uim.servers.views.lostpw;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLostPasswordView : DView {
   mixin(ViewThis!("LostAccountView"));

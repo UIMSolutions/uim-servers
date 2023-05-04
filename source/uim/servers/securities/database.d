@@ -1,7 +1,7 @@
 module uim.servers.securities.database;
 
-@safe:
 import uim.servers;
+@safe:
 
 // Security Chack using database
 class DSRVSecurityControllerDatabase : DSRVSecurityController {

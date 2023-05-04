@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.forms.signin;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSignInForm : DForm {
   mixin(ViewComponentThis!("SignInForm"));

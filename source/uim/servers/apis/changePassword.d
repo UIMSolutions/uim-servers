@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.apis.changePassword;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVChangePasswort : DSRVApi {
   this() {

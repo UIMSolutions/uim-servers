@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.components.checks.sessions.login;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSessionHasLoginCheck : DSessionExistsCheck {
   mixin(ControllerComponentThis!("SessionHasLoginCheck"));

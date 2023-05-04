@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.routers.register;
 
-@safe:
 import uim.servers;
+@safe:
 
 void uimRegister(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimRegister~":uimRegister");

@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.apis.login2;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVLogin2Data : DSRVApi {
   this() { super(); }

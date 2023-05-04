@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.actions.login;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLoginActionController : DSystemActionController {
   mixin(ControllerThis!("LoginActionController"));

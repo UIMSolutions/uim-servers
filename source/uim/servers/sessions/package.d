@@ -1,7 +1,7 @@
 module uim.servers.sessions;
 
-@safe:
 import uim.servers;
+@safe:
 
 public import uim.servers.sessions.reader;
 public import uim.servers.sessions.manager;

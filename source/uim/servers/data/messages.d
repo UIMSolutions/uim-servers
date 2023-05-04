@@ -1,7 +1,7 @@
 module uim.servers.data.messages;
 
-@safe:
 import uim.servers;
+@safe:
 
 Json messageDeleteSuccess(string entity, string name) {
   Json result = Json.emptyObject;

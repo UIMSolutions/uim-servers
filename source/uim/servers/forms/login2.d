@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.forms.login2;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DMVCLogin2Form : DForm {
   mixin(ViewComponentThis!("MVCLogin2Form"));

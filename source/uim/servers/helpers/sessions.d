@@ -1,7 +1,7 @@
 module uim.servers.helpers.sessions;
 
-@safe:
 import uim.servers;
+@safe:
 
 auto getSessionToken(DETBBase database, string sessionId) {
   if (database) 

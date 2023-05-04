@@ -1,7 +1,7 @@
 module uim.servers.sessions.session;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVSession {
   this(Session httpSession) {

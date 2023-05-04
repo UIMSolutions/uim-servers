@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.helpers.apps;
 
-@safe:
 import uim.servers;
+@safe:
 
 auto getApp(DETBBase database, string id) {
   if (database) return database["central", "apps"].findOne(["id":id]);

@@ -5,8 +5,8 @@
 ***********************************************************************************************************************/
 module uim.servers.views.login;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLoginView : DView {
   mixin(ViewThis!("LoginView"));

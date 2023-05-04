@@ -1,7 +1,7 @@
 module uim.servers.events.dispatcher;
 
-@safe:
 import uim.servers;
+@safe:
 /**
  * Objects implementing this interface can emit events.
  *

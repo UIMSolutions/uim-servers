@@ -1,7 +1,7 @@
 module uim.servers.helpers.server;
 
-@safe:
 import uim.servers;
+@safe:
 
 void register(URLRouter aRouter, DServer aServer, string[] methods = null) {
   if (!methods) {

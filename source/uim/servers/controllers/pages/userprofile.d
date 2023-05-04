@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.controllers.pages.userprofile;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DUserProfilePageController : DPageController {
   mixin(ControllerThis!("UserProfilePageController"));

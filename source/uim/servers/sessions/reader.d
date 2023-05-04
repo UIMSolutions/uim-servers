@@ -1,7 +1,7 @@
 module uim.servers.sessions.reader;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVSessionReader {
   this(DSRVApi api) { _api = api; }

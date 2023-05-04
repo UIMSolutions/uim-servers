@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.apis.list;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVListData : DSRVApi {
   this() {

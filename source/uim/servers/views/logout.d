@@ -5,8 +5,8 @@
 ***********************************************************************************************************************/
 module uim.servers.views.logout;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DLogoutView : DView {
   mixin(ViewThis!("LogoutView"));

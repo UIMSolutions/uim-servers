@@ -1,7 +1,7 @@
 module uim.servers.layouts.general;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DGeneralLayout : DLayout {
   this() { super(); }

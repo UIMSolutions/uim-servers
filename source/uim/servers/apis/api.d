@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.apis.api;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSRVApi : DController {
 	this() { super(); 

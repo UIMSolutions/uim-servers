@@ -1,7 +1,7 @@
 module uim.servers.helpers.sites;
 
-@safe:
 import uim.servers;
+@safe:
 
 string getSiteId(DETBBase database, string sessionId, STRINGAA reqParameters) { 
   if (database) 

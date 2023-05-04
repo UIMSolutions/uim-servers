@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.helpers.accounts;
 
-@safe:
 import uim.servers;
+@safe:
 
 auto getAccount(DETBBase database, string id) {
   return database ? database["central", "accounts"].findOne(["id":id]) : null; }

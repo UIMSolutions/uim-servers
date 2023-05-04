@@ -1,7 +1,7 @@
 module uim.servers.events.event;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DEvent : DMVCObject, IEvent {
   this() { this.name("Event"); }

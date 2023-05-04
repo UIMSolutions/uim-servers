@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.routers.logout;
 
-@safe:
 import uim.servers;
+@safe:
 
 void uimLogout(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimLogout~":uimLogout");

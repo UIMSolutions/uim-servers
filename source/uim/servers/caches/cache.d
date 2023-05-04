@@ -5,8 +5,8 @@
 **********************************************************************************************************/
 module uim.servers.caches.cache;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DCache : DMVCObject, ICache {
   this() {}

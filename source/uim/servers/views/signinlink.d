@@ -5,8 +5,8 @@
 ***********************************************************************************************************************/
 module uim.servers.views.signinlink;
 
-@safe:
 import uim.servers;
+@safe:
 
 class DSignInLinkView : DView {
   mixin(ViewThis!("SignInLinkView"));
