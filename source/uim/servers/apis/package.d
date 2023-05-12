@@ -5,9 +5,6 @@
 **********************************************************************************************************/
 module uim.servers.apis;
 
-import uim.servers;
-@safe:
-
 public import uim.servers.apis.api;
 public import uim.servers.apis.changePassword;
 public import uim.servers.apis.list;

@@ -3,9 +3,11 @@ module uim.servers.securities;
 import uim.servers;
 @safe:
 
-public import uim.servers.securities.database;
-public import uim.servers.securities.rest;
-public import uim.servers.securities.security;
+public {
+  import uim.servers.securities.database;
+  import uim.servers.securities.rest;
+  import uim.servers.securities.security;
+}
 
 class DSRVSecurityOptions {
   this() {}

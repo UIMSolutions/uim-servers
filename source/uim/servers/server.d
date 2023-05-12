@@ -27,6 +27,15 @@ class DServer : DApplication, IServer  {
     }
   } */
 
+  O register(this O)(URLRouter router) {
+		debugMethodCall(moduleName!DServer~":DServer("~this.name~")::register(this O)(URLRouter router)");
+
+    debug writeln("Link Path '%s'".format(rootPath~"*"));
+    if (rootPath) router.any(rootPath, &this.request);
+    router.any(rootPath~"*", &this.request);
+    return cast(O)this;
+  }
+
   override void request(HTTPServerRequest newRequest, HTTPServerResponse newResponse) {
     request(newRequest, newResponse, null); 
   }
@@ -38,17 +47,16 @@ class DServer : DApplication, IServer  {
     writeln("newRequest.fullURL = '%s'".format(newRequest.fullURL));
     writeln("newRequest.rootDir = '%s'".format(newRequest.rootDir));
     writeln("newRequest.path    = '%s'".format(newRequest.path));
+    writeln("newRequest.path.length = '%s'".format(newRequest.path.length));
 
     writeln(routesPaths);
-    if (newRequest.path.length >= rootPath.length) {
-      auto myPath = newRequest.path; // [rootPath.length..$];
-      writeln("myPath = '%s'".format(myPath));
-      if (auto myRoute = route(myPath, newRequest.method)) {
-        debug writeln("Found route");
+    auto myPath = rootPath.length > 0 ? newRequest.path[rootPath.length..$] : newRequest.path;
+    writeln("myPath = '%s'".format(myPath));
+    if (auto myRoute = route(myPath, newRequest.method)) {
+      debug writeln("Found route");
 
-        myRoute.controller.request(newRequest, newResponse, options);
-      }
-    } 
+      myRoute.controller.request(newRequest, newResponse, options);
+    }
   }
 }
 auto Server() { return new DServer(); }
