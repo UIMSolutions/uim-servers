@@ -12,7 +12,7 @@ public {
 class DSRVSecurityOptions {
   this() {}
   this(bool[string] initOptions) { this(); _options = initOptions; }
-  this(string[] requiredOptions...) { this(); requiredOptions.each!(a => _options[a] = true); }
+  this(string[] requiredOptions...) { this(); requiredOptions.dup.each!(a => _options[a] = true); }
   this(string[] requiredOptions) { this(); requiredOptions.each!(a => _options[a] = true); }
 
   private bool[string] _options;
