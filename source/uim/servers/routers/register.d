@@ -12,7 +12,7 @@ void uimRegister(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimRegister~":uimRegister");
   STRINGAA requestParameters = readRequestParameters(req, null); 
 
-  PageController(thisServer).request(req, res);
+  PageController(/* thisServer */).request(req, res);
 }
 
 /* static this() {

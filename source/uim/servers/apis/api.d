@@ -15,7 +15,7 @@ class DSRVApi : DController {
     .mimetype("text/json")
     .siteName("central");
   }
-	this(DServer aServer) { this().app(aServer); }
+	/* this(DServer aServer) { this().app(aServer); } */
 	this(string aName) { this().name(aName); }
 	this(DServer aServer, string aName) { this().server(aServer).name(aName); }
 

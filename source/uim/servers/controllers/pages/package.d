@@ -11,6 +11,7 @@ public {
   import uim.servers.controllers.pages.logout;
   import uim.servers.controllers.pages.lostaccount;
   import uim.servers.controllers.pages.lostpw;
+  import uim.servers.controllers.pages.page;
   import uim.servers.controllers.pages.register;
   import uim.servers.controllers.pages.signin;
   import uim.servers.controllers.pages.signinlink;

@@ -4,5 +4,6 @@ import uim.servers;
 @safe:
 
 interface IServer {
+  ILayout layout();
   void request(HTTPServerRequest newRequest, HTTPServerResponse newResponse);  
 }

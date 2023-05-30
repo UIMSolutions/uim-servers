@@ -16,6 +16,7 @@ public { // Web based libraries
   import langs.javascript;
   import uim.html;
   import uim.mvc;
+  import uim.apps;
 }
 
 mixin(ImportMVC!("uim.servers"));

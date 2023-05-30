@@ -11,11 +11,11 @@ import uim.servers;
 void uimLogin2Page(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimLogin2Page~":uimLogin2Page");
 
-  Login2PageController(thisServer).request(req, res);
+  Login2PageController(/* thisServer */).request(req, res);
 }
 
 void uimLogin2Action(HTTPServerRequest req, HTTPServerResponse res) {
   debugMethodCall(moduleName!uimLogin2Action~":uimLogin2Action");
 
-  Login2ActionController(thisServer).request(req, res);
+  Login2ActionController(/* thisServer */).request(req, res);
 }
