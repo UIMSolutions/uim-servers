@@ -1,6 +1,6 @@
-module uim.servers.logs.engines;
+module uim.servers.classes.logs.engines;
 
 public {
-  import uim.servers.logs.engines.console;
-  import uim.servers.logs.engines.file;
+  import uim.servers.classes.logs.engines.console;
+  import uim.servers.classes.logs.engines.file;
 }

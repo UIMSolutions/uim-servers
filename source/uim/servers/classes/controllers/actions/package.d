@@ -3,11 +3,11 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.actions;
+module uim.servers.classes.controllers.actions;
 
 public {
-  import uim.servers.controllers.actions.login;
-  import uim.servers.controllers.actions.login2;
-  import uim.servers.controllers.actions.signin;
-  import uim.servers.controllers.actions.signup;
+  import uim.servers.classes.controllers.actions.login;
+  import uim.servers.classes.controllers.actions.login2;
+  import uim.servers.classes.controllers.actions.signin;
+  import uim.servers.classes.controllers.actions.signup;
 }

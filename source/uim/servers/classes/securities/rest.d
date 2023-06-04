@@ -1,4 +1,4 @@
-module uim.servers.securities.rest;
+module uim.servers.classes.securities.rest;
 
 import uim.servers;
 @safe:

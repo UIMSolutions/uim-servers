@@ -1,4 +1,4 @@
-module uim.servers.layouts.general;
+module uim.servers.classes.layouts.general;
 
 import uim.servers;
 @safe:

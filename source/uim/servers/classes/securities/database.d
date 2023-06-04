@@ -1,4 +1,4 @@
-module uim.servers.securities.database;
+module uim.servers.classes.securities.database;
 
 import uim.servers;
 @safe:

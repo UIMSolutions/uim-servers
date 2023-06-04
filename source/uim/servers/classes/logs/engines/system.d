@@ -1,4 +1,4 @@
-module uim.servers.logs.engines.system;
+module uim.servers.classes.logs.engines.system;
 
 import uim.servers;
 @safe:

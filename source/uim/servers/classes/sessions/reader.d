@@ -1,4 +1,4 @@
-module uim.servers.sessions.reader;
+module uim.servers.classes.sessions.reader;
 
 import uim.servers;
 @safe:

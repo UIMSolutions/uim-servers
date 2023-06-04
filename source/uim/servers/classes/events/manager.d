@@ -1,4 +1,4 @@
-module uim.servers.events.manager;
+module uim.servers.classes.events.manager;
 
 import uim.servers;
 @safe:

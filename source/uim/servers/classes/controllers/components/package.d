@@ -1,5 +1,5 @@
-module uim.servers.controllers.components;
+module uim.servers.classes.controllers.components;
 
 public {
-  import uim.servers.controllers.components.checks;
+  import uim.servers.classes.controllers.components.checks;
 }

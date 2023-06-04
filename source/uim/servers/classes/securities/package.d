@@ -1,12 +1,12 @@
-module uim.servers.securities;
+module uim.servers.classes.securities;
 
 import uim.servers;
 @safe:
 
 public {
-  import uim.servers.securities.database;
-  import uim.servers.securities.rest;
-  import uim.servers.securities.security;
+  import uim.servers.classes.securities.database;
+  import uim.servers.classes.securities.rest;
+  import uim.servers.classes.securities.security;
 }
 
 class DSRVSecurityOptions {

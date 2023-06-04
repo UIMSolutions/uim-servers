@@ -1,4 +1,4 @@
-module uim.servers.data.messages;
+module uim.servers.classes.data.messages;
 
 import uim.servers;
 @safe:

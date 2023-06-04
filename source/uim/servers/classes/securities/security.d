@@ -1,4 +1,4 @@
-module uim.servers.securities.security;
+module uim.servers.classes.securities.security;
 
 import uim.servers;
 @safe:

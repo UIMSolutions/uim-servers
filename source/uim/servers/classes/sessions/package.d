@@ -1,5 +1,5 @@
-module uim.servers.sessions;
+module uim.servers.classes.sessions;
 
-public import uim.servers.sessions.reader;
-public import uim.servers.sessions.manager;
-public import uim.servers.sessions.session;
+public import uim.servers.classes.sessions.reader;
+public import uim.servers.classes.sessions.manager;
+public import uim.servers.classes.sessions.session;

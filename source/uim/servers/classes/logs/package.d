@@ -1,1 +1,1 @@
-module uim.servers.logs;
+module uim.servers.classes.logs;

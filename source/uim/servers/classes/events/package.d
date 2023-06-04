@@ -3,10 +3,10 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.events;
+module uim.servers.classes.events;
 
-public import uim.servers.events.dispatcher;
-public import uim.servers.events.event;
-public import uim.servers.events.list;
-public import uim.servers.events.listener;
-public import uim.servers.events.manager;
+public import uim.servers.classes.events.dispatcher;
+public import uim.servers.classes.events.event;
+public import uim.servers.classes.events.list;
+public import uim.servers.classes.events.listener;
+public import uim.servers.classes.events.manager;

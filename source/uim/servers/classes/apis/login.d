@@ -3,7 +3,7 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.apis.login;
+module uim.servers.classes.apis.login;
 
 import uim.servers;
 @safe:

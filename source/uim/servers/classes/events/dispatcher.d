@@ -1,4 +1,4 @@
-module uim.servers.events.dispatcher;
+module uim.servers.classes.events.dispatcher;
 
 import uim.servers;
 @safe:

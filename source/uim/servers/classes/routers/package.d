@@ -1,8 +1,8 @@
-module uim.servers.routers;
+module uim.servers.classes.routers;
 
 public {
-  import uim.servers.routers.login;
-  import uim.servers.routers.login2;
-  import uim.servers.routers.logout;
-  import uim.servers.routers.register;
+  import uim.servers.classes.routers.login;
+  import uim.servers.classes.routers.login2;
+  import uim.servers.classes.routers.logout;
+  import uim.servers.classes.routers.register;
 }

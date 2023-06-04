@@ -3,7 +3,7 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel, mailto:ons@sicherheitsschmiede.de                                                      
 **********************************************************************************************************/
-module uim.servers.controllers.pages.page;
+module uim.servers.classes.controllers.pages.page;
 
 import uim.servers;
 @safe:

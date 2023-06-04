@@ -1,1 +1,1 @@
-module uim.servers.routes;
+module uim.servers.classes.routes;
