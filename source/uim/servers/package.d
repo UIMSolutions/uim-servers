@@ -19,26 +19,14 @@ public { // Web based libraries
   import uim.apps;
 }
 
-mixin(ImportMVC!("uim.servers"));
-
 public {
   import uim.servers.obj;
 
-  import uim.servers.apis;
-  import uim.servers.caches;
   import uim.servers.classes;
-  import uim.servers.data.helpers;
-  import uim.servers.data.messages;
-  import uim.servers.events;
-  import uim.servers.forms;
   import uim.servers.helpers;
   import uim.servers.interfaces;
-  import uim.servers.layouts;
-  import uim.servers.logs;
-  import uim.servers.helpers;
   import uim.servers.mixins;
-  import uim.servers.securities;
-  import uim.servers.sessions;
+  import uim.servers.tests;
 }
 
 bool notValidSession(string sessionToken, string[string] parameters = null) { return !isValidSession(sessionToken, parameters); }
@@ -49,6 +37,7 @@ bool isValidSession(string sessionToken, string[string] parameters = null) {
 }
 
 DSRVSession[string] srvSessions;
+
 
 
 

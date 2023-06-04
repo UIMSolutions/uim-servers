@@ -34,7 +34,7 @@
 		"../../LIBS/uim-jsonbase",
 		"../../LIBS/uim-entitybase",
 		"../../LIBS/uim-mvc",
-		"../../LIBS/uim-controls",
+		"../../WEBS/web-controls",
 		"../../LIBS/uim-models",
 		"../../LIBS/uim-apps",
 
@@ -51,7 +51,7 @@
 		"../../LIBS/uim-jsonbase",
 		"../../LIBS/uim-entitybase",
 		"../../LIBS/uim-mvc",
-		"../../LIBS/uim-controls",
+		"../../WEBS/web-controls",
 		"../../LIBS/uim-models",
 		"../../LIBS/uim-apps",
 		"../../LANGS/lang-javascript",
