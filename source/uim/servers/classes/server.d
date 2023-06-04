@@ -3,7 +3,7 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.server;
+module uim.servers.classes.server;
 
 import uim.servers;
 @safe:
@@ -38,8 +38,8 @@ class DServer : DMVCObject, IServer, IRequestHandler  {
   mixin(OProperty!("DRoute[HTTPMethod][string]", "routes"));
 
   // Main Containers - Allways first
-  mixin(OProperty!("DMVCLinkContainer",   "links"));
-  mixin(OProperty!("DMVCMetaContainer",   "metas"));
+  mixin(OProperty!("DMVCLinkContainer", "links"));
+  mixin(OProperty!("DMVCMetaContainer", "metas"));
   mixin(OProperty!("DScriptContainer", "scripts"));
   mixin(OProperty!("DStyleContainer",  "styles"));
   
