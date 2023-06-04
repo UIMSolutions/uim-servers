@@ -23,7 +23,6 @@ mixin(ImportMVC!("uim.servers"));
 
 public {
   import uim.servers.obj;
-  import uim.servers.server;
 
   import uim.servers.apis;
   import uim.servers.caches;
