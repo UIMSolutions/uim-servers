@@ -1,4 +1,4 @@
-module uim.servers.views.login2;
+module uim.servers.classes.views.login2;
 
 import uim.servers;
 @safe:

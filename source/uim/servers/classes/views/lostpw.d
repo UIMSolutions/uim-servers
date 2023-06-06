@@ -1,4 +1,4 @@
-module uim.servers.views.lostpw;
+module uim.servers.classes.views.lostpw;
 
 import uim.servers;
 @safe:

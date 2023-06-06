@@ -3,7 +3,7 @@
 *	License: Licensed under Apache 2 [https://apache.org/licenses/LICENSE-2.0.txt]                                       *
 *	Authors: UI Manufaktur UG Team, Ozan Nurettin Süel (Sicherheitsschmiede)										                         * 
 ***********************************************************************************************************************/
-module uim.servers.views.logout;
+module uim.servers.classes.views.logout;
 
 import uim.servers;
 @safe:

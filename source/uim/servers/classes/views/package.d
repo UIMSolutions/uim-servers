@@ -1,12 +1,12 @@
-module uim.servers.views;
+module uim.servers.classes.views;
 
-public import uim.servers.views.components;
+public import uim.servers.classes.views.components;
 
-public import uim.servers.views.login;
-public import uim.servers.views.login2;
-public import uim.servers.views.logout;
-public import uim.servers.views.lostaccount;
-public import uim.servers.views.lostpw;
-public import uim.servers.views.signin;
-public import uim.servers.views.signinlink;
-public import uim.servers.views.signup;
+public import uim.servers.classes.views.login;
+public import uim.servers.classes.views.login2;
+public import uim.servers.classes.views.logout;
+public import uim.servers.classes.views.lostaccount;
+public import uim.servers.classes.views.lostpw;
+public import uim.servers.classes.views.signin;
+public import uim.servers.classes.views.signinlink;
+public import uim.servers.classes.views.signup;

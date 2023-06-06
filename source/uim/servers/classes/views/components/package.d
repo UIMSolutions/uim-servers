@@ -1,1 +1,1 @@
-module uim.servers.views.components;
+module uim.servers.classes.views.components;
