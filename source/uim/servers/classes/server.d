@@ -8,7 +8,7 @@ module uim.servers.classes.server;
 import uim.servers;
 @safe:
 
-class DServer : DMVCObject, IServer, IRequestHandler  {
+class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
 	this() { super(); 
     this
     .securityOptions(SRVSecurityOptions)
