@@ -21,4 +21,5 @@ public {
   import uim.servers.classes.routes;
   import uim.servers.classes.securities;
   import uim.servers.classes.sessions;
+  import uim.servers.classes.views;
 }
