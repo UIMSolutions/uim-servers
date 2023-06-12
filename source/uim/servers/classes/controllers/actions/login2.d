@@ -16,7 +16,7 @@ class DLogin2ActionController : DSystemActionController {
 
     this
       .checks([
-        AppSessionHasLoginCheck, // AppSession checks
+        SessionHasLoginCheck, // AppSession checks
         RequestHasPasswordCheck, // Request checks
         DatabaseHasPasswordsCheck
       ]);
@@ -37,6 +37,6 @@ class DLogin2ActionController : DSystemActionController {
     if (!password) { this.error("database_password_missing"); return; }
 
     options["redirect"] = "/"; 
-    debug writeln(getAppSession(options).debugInfo); }
+    debug writeln(getInternalSession(options).debugInfo); }
 }
 mixin(ControllerCalls!("Login2ActionController"));

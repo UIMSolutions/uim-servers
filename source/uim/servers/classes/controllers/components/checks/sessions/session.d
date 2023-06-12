@@ -22,7 +22,10 @@ class DSessionHasSessionCheck : DSessionExistsCheck {
     debug writeln(moduleName!DSessionHasSessionCheck~":DSessionHasSessionCheck::execute");
     if (!super.execute(options)) { return false; }
 
-    auto session = getAppSession(options).session;
+    auto myController = cast(DController)manager;
+    auto mySessionManager = myController.sessionManager;
+
+    auto session = getInternalSession(options).session;
     if (!session) { // session missing 
       this.error("appsession_session_missing");
       return false; 

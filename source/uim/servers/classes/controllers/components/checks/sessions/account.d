@@ -22,7 +22,7 @@ class DSessionHasAccountCheck : DSessionExistsCheck {
     debug writeln(moduleName!DSessionHasAccountCheck~":DSessionHasAccountCheck::execute");
     if (!super.execute(options)) { return false; } 
 
-    auto session = getAppSession(options);
+    auto session = getInternalSession(options);
     if (!session.account) { // account missing 
       this.error("Account Missing");
       return false;

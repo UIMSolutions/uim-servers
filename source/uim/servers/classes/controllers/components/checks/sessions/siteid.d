@@ -22,7 +22,7 @@ class DSessionHasSiteIdCheck : DSessionHasSessionCheck {
     debug writeln(moduleName!DSessionHasSiteIdCheck~":DSessionHasSiteIdCheck::execute");
     if (!super.execute(options)) { return false; }
 
-    auto session = getAppSession(options).session;
+    auto session = getInternalSession(options).session;
     if (!session["siteId"]) { // site id in session missing 
       this.error("appsession_siteid_missing");
       return false; 

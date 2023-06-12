@@ -9,10 +9,18 @@ import uim.servers;
 @safe:
 
 class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
-	this() { super(); 
+	this() { super(); }
+	this(ISessionManager aSessionManager) { this().sessionManager(aSessionManager); }
+
+  override void initialize(Json configSettings = Json(null)) {
+    super.initialize(configSettings);
+
     this
     .securityOptions(SRVSecurityOptions)
-    .securityController(SRVSecurityController); }
+    .securityController(SRVSecurityController)
+    .sessionManager(SessionManager); 
+  }
+
 
 // #region parameters
     mixin(MVCParameter!("rootPath"));
@@ -37,6 +45,8 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
 
   mixin(OProperty!("DRoute[HTTPMethod][string]", "routes"));
 
+  mixin(OProperty!("ISessionManager", "sessionManager"));
+  
   // Main Containers - Allways first
   mixin(OProperty!("DMVCLinkContainer", "links"));
   mixin(OProperty!("DMVCMetaContainer", "metas"));

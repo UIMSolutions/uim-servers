@@ -24,23 +24,20 @@ class DLoginActionController : DSystemActionController {
     super.beforeResponse(options);    
     if (hasError || "redirect" in options) { return; }
 
-    debug writeln("0");
     // New Session
     if (this.request.session) this.response.terminateSession();
-    string appSessionId = options.get("appSessionId", "");     
-    if (appSessionId in appSessions) appSessions.remove(appSessionId);
-    options.remove("appSessionId");     
+    string internalSessionId = options.get("internalSessionId", "");     
+    if (internalSessionId in internalSessions) internalSessions.remove(internalSessionId);
+    options.remove("internalSessionId");     
         
-    debug writeln("1");
-    // appSession missing, create new one
+    // internalSession missing, create new one
     debug writeln(moduleName!DLoginActionController~":DLoginActionController::beforeResponse -> Read httpSession");
     auto httpSession = this.response.startSession();
-    appSessions[httpSession.id] = new DMVCSession(httpSession);
-    options["appSessionId"] = httpSession.id;
+    internalSessions[httpSession.id] = new DInternalSession(httpSession);
+    options["internalSessionId"] = httpSession.id;
 
-    debug writeln("2");
     // Create login and session object 
-    this.session(appSessions[httpSession.id]);
+    this.session(internalSessions[httpSession.id]);
     auto lastAccessedOn = toTimestamp(now());
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse -> New login entity");
     

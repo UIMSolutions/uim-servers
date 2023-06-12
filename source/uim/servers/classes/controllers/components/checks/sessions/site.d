@@ -22,7 +22,7 @@ class DSessionHasSiteCheck : DSessionExistsCheck {
     debug writeln(moduleName!DSessionHasSiteCheck~":DSessionHasSiteCheck::check");
     if (!super.execute(options)) { return false; }
 
-    auto site = getAppSession(options).site;
+    auto site = getInternalSession(options).site;
     if (!site) { 
       this.error("appsession_site_missing");
       return false; 
