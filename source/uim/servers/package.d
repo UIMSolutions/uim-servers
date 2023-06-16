@@ -7,10 +7,13 @@ module uim.servers;
 
 mixin(ImportPhobos!());
 
-public import vibe.d;
+// External Libs
+public {
+  import vibe.d;
+  import vibe.http.session : HttpSession = Session;
+}
 
 mixin ImportUimBase;
-@safe:
 
 public { // Web based libraries
   import langs.javascript;
@@ -29,17 +32,14 @@ public {
   import uim.servers.tests;
 }
 
+@safe:
+
 bool notValidSession(string sessionToken, string[string] parameters = null) { return !isValidSession(sessionToken, parameters); }
 
 bool isValidSession(string sessionToken, string[string] parameters = null) {
   if (sessionToken == "demo") return true;
   return false;
 }
-
-DSRVSession[string] srvSessions;
-
-
-
 
 DServer thisServer;
 string[size_t] errorMessages;
