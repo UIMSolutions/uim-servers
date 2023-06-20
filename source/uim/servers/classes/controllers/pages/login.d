@@ -35,14 +35,6 @@ override void initialize(Json configSettings = Json(null)) {
         "/js/apps/app.js",   
         "/js/apps/login.js");   
   }
-
-  override void beforeResponse(STRINGAA options = null) {
-    debugMethodCall(moduleName!DLoginPageController~":DLoginPageController("~this.name~")::beforeResponse");
-    super.beforeResponse(options);
-    if (hasError || "redirect" in options) { return; }
-
-    debug writeln("MImeType: ", this.mimetype);
-  }
 }
 mixin(ControllerCalls!("LoginPageController"));
 

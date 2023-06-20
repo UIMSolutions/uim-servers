@@ -22,21 +22,18 @@ class DLogin2ActionController : DSystemActionController {
       ]);
   }
   
-  override void beforeResponse(STRINGAA options = null) {
+  override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLogin2ActionController~":DLogin2ActionController("~this.name~")::beforeResponse");
-    super.beforeResponse(options);    
-    if (hasError || "redirect" in options) { return; }
+    if (!super.beforeResponse(options) || hasError || "redirect" in options) { return false; }
 
-    debug writeln("X3");
     auto account = this.accounts.findOne(["name":this.session.login["accountName"]]);
     if (!account) { this.error("database_account_missing"); return; }
     this.session.account = account;
 
-    debug writeln("X4");
     auto password = this.passwords.findOne(["accountId": account.id.toString]);
     if (!password) { this.error("database_password_missing"); return; }
 
     options["redirect"] = "/"; 
-    debug writeln(getInternalSession(options).debugInfo); }
+    debug writeln(sessionManager.session(options).debugInfo); }
 }
 mixin(ControllerCalls!("Login2ActionController"));

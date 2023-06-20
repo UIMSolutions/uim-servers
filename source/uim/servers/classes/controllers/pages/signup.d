@@ -19,12 +19,6 @@ override void initialize(Json configSettings = Json(null)) {
       .title("Sign Up")
       .view(SignUpView(this));   
   }
-
-  override void beforeResponse(STRINGAA options = null) {
-    debugMethodCall(moduleName!DSignUpPageController~":DSignUpPageController("~this.name~")::beforeResponse");
-    super.beforeResponse(options);
-    if (hasError || "redirect" in options) { return; }
-  }
 }
 mixin(ControllerCalls!("SignUpPageController"));
 

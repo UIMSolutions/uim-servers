@@ -53,9 +53,9 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["error"].get!int > 0) return result;
 
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
-    
+    auto httpSessionId = reqParameters.get("httpSessionId", "");
+    auto mySession = sessionManager.session(httpSessionId);
+   
     if (!database) { // Database missing
       result["status"] = 409;
       result["lastError"] = 409;
@@ -70,7 +70,7 @@ class DSRVApi : DController {
 
       return result; } 
 
-    if (!srvSession) { // Session missing
+    if (!mySession) { // Session missing
       result["status"] = 409;
       result["lastError"] = 409;
 
@@ -80,7 +80,7 @@ class DSRVApi : DController {
       message["description"] = "Keine Session";
       return result; }
 
-    if (!srvSession.site) { // Site missing
+    if (!mySession.site) { // Site missing
       result["status"] = 409;
       result["lastError"] = 409;
 
@@ -90,7 +90,7 @@ class DSRVApi : DController {
       message["description"] = "Keine Site";
       return result; }      
 
-    auto collection = database[srvSession.site.name, pool];
+    auto collection = database[mySession.site.name, pool];
     if (!collection) { // Collection missing
       result["status"] = 409;
       result["lastError"] = 409;
@@ -138,10 +138,10 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["lastError"].get!size_t > 0) return result;
     
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
+    auto mySessionId = reqParameters.get("sessionId", "");
+    auto mySession = sessionManager.session(mySessionId);
 
-    auto entities = database[siteName ? siteName : srvSession.site.name, pool].findMany;
+    auto entities = database[siteName ? siteName : mySession.site.name, pool].findMany;
     result["entities"] = entities.toJson;
 
     return result;
@@ -153,15 +153,15 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["lastError"].get!size_t > 0) return result;
     
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
+    auto mySessionId = reqParameters.get("sessionId", "");
+    auto mySession = sessionManager.session(mySessionId);
 
-    if (auto entity = database ? database[srvSession.site.name, pool].createFromTemplate : null) {
+    if (auto entity = database ? database[mySession.site.name, pool].createFromTemplate : null) {
       entity.readFromRequest(reqParameters);
           
       // id exists?
       auto id = entity.id.toString;
-      if(database[siteName ? siteName : srvSession.site.name, pool].count(entity.id)) {
+      if(database[siteName ? siteName : mySession.site.name, pool].count(entity.id)) {
         debug writeln("Found an entity: "); 
         result["status"] = 409;
         result["lastError"] = 409;
@@ -183,7 +183,7 @@ class DSRVApi : DController {
       auto goEdit = alertLinkEdit(url, id).toString;
       auto goDelete = alertLinkDelete(url, id).toString;
   */
-      auto newName = database.uniqueName(siteName ? siteName : srvSession.site.name, pool, entity.name); 
+      auto newName = database.uniqueName(siteName ? siteName : mySession.site.name, pool, entity.name); 
       if (newName != name) {
         auto nameMessage = Json.emptyObject;
         nameMessage["status"] = "WARN";
@@ -194,7 +194,7 @@ class DSRVApi : DController {
         entity.name = newName;            
       }
       entity.name(newName);
-      database[siteName ? siteName : srvSession.site.name, pool].insertOne(entity);
+      database[siteName ? siteName : mySession.site.name, pool].insertOne(entity);
 
       auto successMessage = Json.emptyObject;
       successMessage["status"] = "INFO";
@@ -215,11 +215,11 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["lastError"].get!size_t > 0) return result;
     
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
+    auto mySessionId = reqParameters.get("mySessionId", "");
+    auto mySession = sessionManager.session(mySessionId);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DEntity entity = database[srvSession.site.name, pool].findOne(["id":id]);
+    DEntity entity = database[mySession.site.name, pool].findOne(["id":id]);
     if (!entity) { // Entity not found :-(
       result["status"] = 409;
       result["lastError"] = 409;
@@ -254,12 +254,11 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["lastError"].get!size_t > 0) return result;
     
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
-
+    auto mySessionId = reqParameters.get("mySessionId", "");
+    auto mySession = sessionManager.session(mySessionId);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id":id]);
+    DEntity entity = database[siteName ? siteName : mySession.site.name, pool].findOne(["id":id]);
     
     if (!entity) { // Entity not found :-(
       result["status"] = 409;
@@ -299,11 +298,11 @@ class DSRVApi : DController {
     auto result = Json.emptyObject; // super.toJson(reqParameters);
     if (result["lastError"].get!size_t > 0) return result;
     
-    auto srvSessionId = reqParameters.get("srvSessionId", "");
-    auto srvSession = srvSessions.get(srvSessionId, null);
+    auto mySessionId = reqParameters.get("mySessionId", "");
+    auto mySession = sessionManager.session(mySessionId);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DEntity entity = database[siteName ? siteName : srvSession.site.name, pool].findOne(["id": id]);
+    DEntity entity = database[siteName ? siteName : mySession.site.name, pool].findOne(["id": id]);
     if (!entity) {
       result["status"] = 409;
       result["lastError"] = 409;
@@ -315,7 +314,7 @@ class DSRVApi : DController {
       return result;
     }
 
-    database[siteName ? siteName : srvSession.site.name, pool].removeOne(["id":entity.id.toString]);
+    database[siteName ? siteName : mySession.site.name, pool].removeOne(["id":entity.id.toString]);
 
     auto successMessage = Json.emptyObject;
     successMessage["type"] = "INFO";

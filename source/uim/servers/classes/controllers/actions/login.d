@@ -19,10 +19,9 @@ class DLoginActionController : DSystemActionController {
     .checks([DatabaseHasLoginsCheck, DatabaseHasSessionsCheck]); 
   }
 
-  override void beforeResponse(STRINGAA options = null) {
+  override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse");
-    super.beforeResponse(options);    
-    if (hasError || "redirect" in options) { return; }
+    if (!super.beforeResponse(options) || hasError || "redirect" in options) { return false; }
 
     // New Session
     if (this.request.session) this.response.terminateSession();
@@ -33,7 +32,7 @@ class DLoginActionController : DSystemActionController {
     // internalSession missing, create new one
     debug writeln(moduleName!DLoginActionController~":DLoginActionController::beforeResponse -> Read httpSession");
     auto httpSession = this.response.startSession();
-    internalSessions[httpSession.id] = new DInternalSession(httpSession);
+    internalSessions[httpSession.id] = new DSession(httpSession);
     options["internalSessionId"] = httpSession.id;
 
     // Create login and session object 
@@ -53,7 +52,7 @@ class DLoginActionController : DSystemActionController {
       this.session.login = this.logins.findOne(login.id);
       if (!this.session.login) {
         debug writeln("No session.login for id ", login.id);
-        return; 
+        return false; 
       }
 
       debug writeln(moduleName!DLoginActionController~":DLoginActionController::beforeResponse -> New session entity");
@@ -68,6 +67,8 @@ class DLoginActionController : DSystemActionController {
       options["redirect"] = "/login2?loginId="~this.session.login.id.toString; 
       debug writeln(this.session.debugInfo); 
     }
+
+    return true;
   }
 }
 mixin(ControllerCalls!("LoginActionController"));

@@ -11,10 +11,10 @@ class DSRVSecurityController : DController {
    */ 
     /* if (page) {
       debug writeln("has page");
-      auto srvSession = page.hasGlobalSession ? page.globalSession : readOrCreateSession(page._request, page._response);
+      auto mySession = page.hasGlobalSession ? page.globalSession : readOrCreateSession(page._request, page._response);
       page.hasGlobalSession(true);
 
-      debug writeln("Session -> ", srvSession ? srvSession.id : "'null'");
+      debug writeln("Session -> ", mySession ? mySession.id : "'null'");
 
       debug writeln("Init values");
       page.loginId = "";
@@ -37,7 +37,7 @@ class DSRVSecurityController : DController {
         }
         json["loginId"] = page.loginId;
         parameters["loginId"] = page.loginId;
-        if (srvSession) srvSession.set("loginId", page.loginId);
+        if (mySession) mySession.set("loginId", page.loginId);
         debug writeln("LoginId: ", page.loginId.empty ? "null" : page.loginId);
       }
 
@@ -55,7 +55,7 @@ class DSRVSecurityController : DController {
         }
         json["sessionId"] = page.sessionId;
         parameters["sessionId"] = page.sessionId;
-        if (srvSession) srvSession.set("sessionId", page.sessionId);
+        if (mySession) mySession.set("sessionId", page.sessionId);
         debug writeln("sessionId: ", page.sessionId.empty ? "null" : page.sessionId);
       }
 
@@ -72,7 +72,7 @@ class DSRVSecurityController : DController {
         }
         json["siteId"] = page.siteId;
         parameters["siteId"] = page.siteId;
-        if (srvSession) srvSession.set("siteId", page.siteId);
+        if (mySession) mySession.set("siteId", page.siteId);
         debug writeln("siteId: ", page.siteId.empty ? "null" : page.siteId);
       }
     }
