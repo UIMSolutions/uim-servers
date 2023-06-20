@@ -4,7 +4,3 @@
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
 module uim.servers.classes.controllers.components.checks;
-
-public {
-	import uim.servers.classes.controllers.components.checks.sessions;
-}
