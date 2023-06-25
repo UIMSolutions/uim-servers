@@ -3,9 +3,12 @@ module uim.servers.mixins;
 import uim.servers;
 @safe:
 
-public import uim.servers.mixins.config;
-public import uim.servers.mixins.server;
-public import uim.servers.mixins.settings;
+public {
+  import uim.servers.mixins.config;
+  import uim.servers.mixins.server;
+  import uim.servers.mixins.sessionmanager;
+  import uim.servers.mixins.settings;
+}
 
 mixin template ImportDubs() {
   public import vibe.d;

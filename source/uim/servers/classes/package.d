@@ -17,6 +17,7 @@ public {
   import uim.servers.classes.forms;
   import uim.servers.classes.layouts;
   import uim.servers.classes.logs;
+  import uim.servers.classes.models;
   import uim.servers.classes.routers;
   import uim.servers.classes.routes;
   import uim.servers.classes.securities;

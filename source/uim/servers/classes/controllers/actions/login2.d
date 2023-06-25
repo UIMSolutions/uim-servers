@@ -27,13 +27,16 @@ class DLogin2ActionController : DSystemActionController {
     if (!super.beforeResponse(options) || hasError || "redirect" in options) { return false; }
 
     auto account = this.accounts.findOne(["name":this.session.login["accountName"]]);
-    if (!account) { this.error("database_account_missing"); return; }
+    if (!account) { this.error("database_account_missing"); return false; }
     this.session.account = account;
 
     auto password = this.passwords.findOne(["accountId": account.id.toString]);
-    if (!password) { this.error("database_password_missing"); return; }
+    if (!password) { this.error("database_password_missing"); return false; }
 
     options["redirect"] = "/"; 
-    debug writeln(sessionManager.session(options).debugInfo); }
+    debug writeln(sessionManager.session(options).debugInfo);
+
+    return true; 
+  }
 }
 mixin(ControllerCalls!("Login2ActionController"));

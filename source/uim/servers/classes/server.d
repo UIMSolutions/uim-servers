@@ -16,9 +16,9 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
     super.initialize(configSettings);
 
     this
-    .securityOptions(SRVSecurityOptions)
-    .securityController(SRVSecurityController)
-    .sessionManager(SessionManager); 
+      .securityOptions(SRVSecurityOptions)
+      .securityController(SRVSecurityController)
+      .sessionManager(SessionManager); 
   }
 
 
@@ -81,8 +81,8 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
       DRoute[HTTPMethod] routesAtPath = _routes.get(newRoute.path, null);
       routesAtPath[newRoute.method] = newRoute;
 
-      if (auto myController = cast(DSRVPageController)newRoute.controller) {
-        myController.server(this);
+      if (auto myController = cast(DController)newRoute.controller) {
+        myController.manager(this);
       }
 
       _routes[newRoute.path] = routesAtPath;
@@ -110,12 +110,12 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
   }
 
   // #region App Management
-    O registerApps(this O)(DApp[] someApps...) {
-      this.registerApps(someApps.dup);
+    O addApps(this O)(DApp[] someApps...) {
+      this.addApps(someApps.dup);
       return cast(O)this;
     }
 
-    O registerApps(this O)(DApp[] someApps) {
+    O addApps(this O)(DApp[] someApps) {
       someApps.each!(a => a.server(this)); // Owner is server
       this.apps(this.apps~someApps);
       return cast(O)this;
@@ -140,19 +140,20 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
       auto myPath = rootPath.length > 0 ? newRequest.path[rootPath.length..$] : newRequest.path;
       writeln("myPath = '%s'".format(myPath));
       if (auto myRoute = route(myPath, newRequest.method)) {
-        debug writeln("Found route");
+        debug writeln("Found server route");
 
         myRoute.controller.request(newRequest, newResponse, options);
+        return;
       }
-      else {
-        foreach(myApp; apps) {
-          if (myApp && (myPath >= myApp.rootPath) && (myPath.indexOf(myApp.rootPath) == 0)) {
-            debug writeln("Found App %s".format(myApp.name));
 
-            auto myOptions = options.dup;
-            myOptions["path"] = myPath;
-            myApp.request(newRequest, newResponse, myOptions);
-          }
+      foreach(myApp; apps) {
+        if (myApp && (myPath >= myApp.rootPath) && (myPath.indexOf(myApp.rootPath) == 0)) {
+          debug writeln("Found App %s".format(myApp.name));
+
+          auto myOptions = options.dup;
+          myOptions["path"] = myPath;
+          myApp.request(newRequest, newResponse, myOptions);
+          return;
         }
       }
     }

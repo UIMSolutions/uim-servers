@@ -10,15 +10,5 @@ import uim.servers;
 
 class DSignInActionController : DSystemActionController {
   mixin(ControllerThis!("SignInActionController"));
-
-  override void initialize(Json configSettings = Json(null)) {
-    super.initialize(configSettings); 
-  }
-
-  override void beforeResponse(STRINGAA options = null) {
-    debug writeln(moduleName!DSignInActionController~":DSignInActionController("~this.name~")::beforeResponse");
-    super.beforeResponse(options);    
-    if (hasError || "redirect" in options) { return; }
-  }
 }
 mixin(ControllerCalls!("SignInActionController"));
