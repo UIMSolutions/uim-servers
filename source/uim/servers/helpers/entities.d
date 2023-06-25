@@ -12,7 +12,7 @@ string getEntityId(HTTPServerRequest req, STRINGAA reqParameters) {
   return reqParameters.get("entity_id", reqParameters.get("id", ""));
 } 
   
-string getEntityId(DETBBase database, string sessionId, STRINGAA reqParameters) { 
+string getEntityId(DEntityBase database, string sessionId, STRINGAA reqParameters) { 
   if (database) return getEntityId(database["central", "sessions"].findOne(["id":sessionId]).toJson, reqParameters);
   return getEntityId(reqParameters);
 } 
@@ -28,12 +28,12 @@ string getEntityId(STRINGAA reqParameters) {
   return reqParameters.get("entityId", null);
 } 
 
-auto getEntity(DETBBase database, string id) {
+auto getEntity(DEntityBase database, string id) {
   if (database) return database["central", "entities"].findOne(["id":id]);
   return null;
 } 
 
-auto getEntity(Json sessionToken, DETBBase database, string id) {
+auto getEntity(Json sessionToken, DEntityBase database, string id) {
   if ((sessionToken != Json(null)) && ("entityId" in sessionToken)) {
     return database["central", "entities"].findOne(["id":sessionToken["entityId"].get!string]);
   }
@@ -42,7 +42,7 @@ auto getEntity(Json sessionToken, DETBBase database, string id) {
   return null;
 } 
 
-auto getEntitySites(DETBBase database, string id) {
+auto getEntitySites(DEntityBase database, string id) {
   DEntity[] sites;
   if (auto entity = getEntity(database, id)) {
     foreach (entityId; entity["sites"].split(";")) {

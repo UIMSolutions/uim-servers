@@ -8,14 +8,14 @@ module uim.servers.helpers.accounts;
 import uim.servers;
 @safe:
 
-auto getAccount(DETBBase database, string id) {
+auto getAccount(DEntityBase database, string id) {
   return database ? database["central", "accounts"].findOne(["id":id]) : null; }
 unittest {
   version(uim_servers) {
     // TODO
   }}
 
-auto getAccountPasswords(DETBBase database, string id) {
+auto getAccountPasswords(DEntityBase database, string id) {
   auto account = getAccount(database, id);
   if (account) return database["central", "passwords"].findMany(["accountId":account["id"]]);
   return null; } 
@@ -24,7 +24,7 @@ unittest {
     // TODO
   }}
 
-auto getAccountPasswordActive(DETBBase database, string id) {
+auto getAccountPasswordActive(DEntityBase database, string id) {
   if (auto account = getAccount(database, id)) {
     auto selector = Json.emptyObject;
     selector["accountId"] = account["id"];

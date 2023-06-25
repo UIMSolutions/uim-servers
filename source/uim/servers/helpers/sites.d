@@ -3,7 +3,7 @@ module uim.servers.helpers.sites;
 import uim.servers;
 @safe:
 
-string getSiteId(DETBBase database, string sessionId, STRINGAA reqParameters) { 
+string getSiteId(DEntityBase database, string sessionId, STRINGAA reqParameters) { 
   if (database) 
     if (auto dbSession = database["central", "sessions"].findOne(["id":reqParameters.get("sessionId", "")]))
       if (dbSession["siteId"].isUUID) return dbSession["siteId"];
@@ -20,21 +20,21 @@ string getSiteId(STRINGAA reqParameters) {
   return reqParameters.get("siteId", null); } 
 
 // #region getSite
-auto getSite(Json sessionToken, DETBBase database, string id) {
+auto getSite(Json sessionToken, DEntityBase database, string id) {
   if ((sessionToken != Json(null)) && ("siteId" in sessionToken))
     return getSite(database, sessionToken["siteId"].get!string);
   
   return null; }
 
-auto getSite(DETBBase database, string id) {
+auto getSite(DEntityBase database, string id) {
   return id.isUUID ?  getSite(database, UUID(id)) : null; } 
 
-auto getSite(DETBBase database, UUID id) {
+auto getSite(DEntityBase database, UUID id) {
   return database ?  database["central", "sites"].findOne(id) : null; } 
 
 // #endregion getSite
 
-auto getSiteApps(DETBBase database, string id) {
+auto getSiteApps(DEntityBase database, string id) {
   DEntity[] apps;
   if (auto site = getSite(database, id)) 
     foreach (appId; site["apps"].split(";")) 

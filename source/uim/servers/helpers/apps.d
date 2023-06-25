@@ -8,7 +8,7 @@ module uim.servers.helpers.apps;
 import uim.servers;
 @safe:
 
-auto getApp(DETBBase database, string id) {
+auto getApp(DEntityBase database, string id) {
   if (database) return database["central", "apps"].findOne(["id":id]);
   return null; }
 unittest {

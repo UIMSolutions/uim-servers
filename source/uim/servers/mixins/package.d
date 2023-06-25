@@ -4,6 +4,7 @@ import uim.servers;
 @safe:
 
 public {
+  import uim.servers.mixins.appmanager;
   import uim.servers.mixins.config;
   import uim.servers.mixins.server;
   import uim.servers.mixins.sessionmanager;

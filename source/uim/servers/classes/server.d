@@ -31,7 +31,7 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
   mixin(OProperty!("size_t", "versionNumber"));
 
   // Interfaces
-  mixin(OProperty!("DETBBase", "database"));
+  mixin(OProperty!("DEntityBase", "database"));
 
   protected ILayout _layout;
 	@property O layout(this O)(ILayout newlayout) { 
