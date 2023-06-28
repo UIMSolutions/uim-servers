@@ -4,3 +4,10 @@
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
 module uim.servers.classes.apps.container;
+
+import uim.servers;
+@safe:
+
+class DAppContainer  : DNamedContainer!IApp {
+}
+auto AppContainer() { return new DAppContainer; }

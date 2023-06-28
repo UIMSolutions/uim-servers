@@ -1,1 +1,1 @@
-module uim.servers.mixins.sessionmanger;
+module uim.servers.mixins.sessionmanager;

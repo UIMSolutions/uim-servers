@@ -3,56 +3,56 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel, mailto:ons@sicherheitsschmiede.de                                                      
 **********************************************************************************************************/
-module uim.mvc.mixins.sessionmanager;
+module uim.servers.mixins.appmanager;
 
-import uim.mvc;
+import uim.servers;
 @safe:
 
-mixin template SessionManagerTemplate() {
-  protected DSessionContainer _sessionContainer;
+mixin template AppManagerTemplate() {
+  protected DAppContainer _appContainer;
 
-  void sessions(DSessionContainer aContainer) {
-    _sessionContainer = aContainer;
+  void apps(DAppContainer aContainer) {
+    _appContainer = aContainer;
   }
-  DSessionContainer sessions() {
-    return _sessionContainer; 
+  DAppContainer apps() {
+    return _appContainer; 
   }
 
-  ISession session(string[string] options) {
-    return sessions(options.get("httpSessionId", null));
+  IApp app(string[string] options) {
+    return apps(options.get("httpAppId", null));
   }  
-  ISession session(string httpSessionId) {
-    if (_sessionContainer) return _sessionContainer[httpSessionId, NullSession];
+  IApp app(string httpAppId) {
+    if (_appContainer) return _appContainer[httpAppId, NullApp];
     return null;
   }
 
-  bool existsSession(ISession aSession) {
-    return existsSession(aSession.httpSessionId);
+  bool existsApp(IApp aApp) {
+    return existsApp(aApp.httpAppId);
   }
-  bool existsSession(string httpSessionId) {
-    if (_sessionContainer) return (httpSessionId in _sessionContainer ? true : false);
+  bool existsApp(string httpAppId) {
+    if (_appContainer) return (httpAppId in _appContainer ? true : false);
     return false;
   }
 
-  void addSession(ISession aSession) {
-    if (aSession) addSession(aSession.httpSessionId, aSession);
+  void addApp(IApp aApp) {
+    if (aApp) addApp(aApp.httpAppId, aApp);
   }
-  void addSession(string httpSessionId, ISession aSession) {
-    if (_sessionContainer && aSession) _sessionContainer.add(httpSessionId, aSession);
+  void addApp(string httpAppId, IApp aApp) {
+    if (_appContainer && aApp) _appContainer.add(httpAppId, aApp);
   }
-  // Update existing session
-  void updateSession(ISession aSession) {
-    if (aSession) updateSession(aSession.httpSessionId);
+  // Update existing app
+  void updateApp(IApp aApp) {
+    if (aApp) updateApp(aApp.httpAppId);
   }
-  void updateSession(string httpSessionId, ISession aSession) {
-    if (_sessionContainer && existsSession(httpSessionId)) _sessionContainer.update(httpSessionId, aSession);
+  void updateApp(string httpAppId, IApp aApp) {
+    if (_appContainer && existsApp(httpAppId)) _appContainer.update(httpAppId, aApp);
   }
 
-  // Remove existing session
-  void removeSession(ISession aSession) {
-    if (aSession) removeSession(aSession.httpSessionId);
+  // Remove existing app
+  void removeApp(IApp aApp) {
+    if (aApp) removeApp(aApp.httpAppId);
   }
-  void removeSession(string httpSessionId) {
-    if (_sessionContainer && existsSession(httpSessionId)) _sessionContainer.remove(httpSessionId);
+  void removeApp(string httpAppId) {
+    if (_appContainer && existsApp(httpAppId)) _appContainer.remove(httpAppId);
   }
 }

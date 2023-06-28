@@ -6,5 +6,5 @@
 module uim.servers.classes.apps;
 
 public {
-	import module uim.servers.classes.apps.container;
+	import uim.servers.classes.apps.container;
 }
