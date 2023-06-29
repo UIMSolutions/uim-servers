@@ -10,6 +10,8 @@ import uim.servers;
 
 class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager  {
 	this() { super(); }
+  this(string aName) { this(); name(aName); }
+  this(string aName, string aRootPath) { this(aName); rootPath(aRootPath); }
 
   mixin(TProperty!("IEntityBase", "entityBase"));
 
@@ -161,5 +163,5 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   // #endregion 
 }
 auto Server() { return new DServer(); }
-auto Server(string aName) { return Server.name(aName); }
-auto Server(string aName, string aRootPath) { return Server(aName).rootPath(aRootPath); }
+auto Server(string aName) { return new DServer(aName); }
+auto Server(string aName, string aRootPath) { new DServer(aName, aRootPath); }

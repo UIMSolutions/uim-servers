@@ -8,12 +8,11 @@ module uim.servers.controller;
 import uim.servers;
 @safe:
 
-class DSRVController {
+class DSRVController : DController {
   this() {}
   this(DSRVApi myApi) { this(); this.api(myApi); }
 
   mixin(SProperty!("DSRVApi", "api"));
-  mixin EntityBaseTemplate;
 
   Json run(STRINGAA parameters) {
     auto json = Json.emptyObject;
@@ -26,4 +25,4 @@ class DSRVController {
   }
 }
 auto SRVController() { return new DSRVController; }
-auto SRVController(DSRVApi myApi) { return SRVController.api(myApi); }
+auto SRVController(DSRVApi myApi) { return new DSRVController(myApi); }

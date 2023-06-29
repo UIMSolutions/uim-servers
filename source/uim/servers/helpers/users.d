@@ -28,7 +28,7 @@ auto getUser(Json sessionToken, DEntityBase entityBase, string id) {
     if (sessionToken != Json(null) && "userId" in sessionToken) // Try to find user from sessionToken 
       user = getUser(entityBase, sessionToken["userId"].get!string); 
     if (!user && id.isUUID) // Not found user, try again 
-      user = getUser(database, id);
+      user = getUser(entityBase, id);
   }
 
   return user;

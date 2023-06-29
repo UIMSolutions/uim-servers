@@ -13,7 +13,7 @@ string getEntityId(HTTPServerRequest req, STRINGAA reqParameters) {
 } 
   
 string getEntityId(DEntityBase entityBase, string sessionId, STRINGAA reqParameters) { 
-  if (entityBase) return getEntityId(entityBase["central", "sessions"].findOne(["id":sessionId]).toJson, reqParameters);
+  if (entityBase) return getEntityId(entityBase.tenant("central").collection("sessions").findOne(["id":sessionId]).toJson, reqParameters);
   return getEntityId(reqParameters);
 } 
 
@@ -28,14 +28,14 @@ string getEntityId(STRINGAA reqParameters) {
   return reqParameters.get("entityId", null);
 } 
 
-auto getEntity(DEntityBase database, string id) {
-  if (database) return database["central", "entities"].findOne(["id":id]);
+auto getEntity(DEntityBase entityBase, string id) {
+  if (entityBase) return entityBase.tenant("central").collection("entities").findOne(["id":id]);
   return null;
 } 
 
-auto getEntity(Json sessionToken, DEntityBase database, string id) {
+auto getEntity(Json sessionToken, DEntityBase entityBase, string id) {
   if ((sessionToken != Json(null)) && ("entityId" in sessionToken)) {
-    return database["central", "entities"].findOne(["id":sessionToken["entityId"].get!string]);
+    return entityBase.tenant("central").collection("entities").findOne(["id":sessionToken["entityId"].get!string]);
   }
   // else if ((result == Json(null)) && (database)) return database.findOne("central", "entities", ["id":id]);
   
