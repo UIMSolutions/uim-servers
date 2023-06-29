@@ -8,31 +8,22 @@ module uim.servers.helpers.accounts;
 import uim.servers;
 @safe:
 
-auto getAccount(DEntityBase database, string id) {
-  return database ? database["central", "accounts"].findOne(["id":id]) : null; }
-unittest {
-  version(uim_servers) {
-    // TODO
-  }}
+auto getAccount(DEntityBase entityBase, string id) {
+  return entityBase ? entityBase.tenant("central").collection("accounts").findOne(["id":id]) : null; 
+}
 
-auto getAccountPasswords(DEntityBase database, string id) {
+auto getAccountPasswords(DEntityBase entityBase, string id) {
   auto account = getAccount(entityBase, id);
-  if (account) return entityBase["central", "passwords"].findMany(["accountId":account["id"]]);
-  return null; } 
-unittest {
-  version(uim_servers) {
-    // TODO
-  }}
+  if (account) return entityBase.tenant("central").collection("passwords").findMany(["accountId":account["id"]]);
+  return null; 
+} 
 
-auto getAccountPasswordActive(DEntityBase database, string id) {
-  if (auto account = getAccount(database, id)) {
+auto getAccountPasswordActive(DEntityBase entityBase, string id) {
+  if (auto account = getAccount(entityBase, id)) {
     auto selector = Json.emptyObject;
     selector["accountId"] = account["id"];
     selector["active"] = true;
-    return database["central", "passwords"].findOne(selector); } 
+    return entityBase.tenant("central").collection("passwords").findOne(selector); } 
 
-  return null; }
-unittest {
-  version(uim_servers) {
-    // TODO
-  }}
+  return null; 
+}

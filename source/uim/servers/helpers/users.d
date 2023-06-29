@@ -39,7 +39,7 @@ auto getUser(DEntityBase entityBase, string id) {
 } 
 
 auto getUser(DEntityBase entityBase, UUID id) {
-  return entityBase ? entityBase["central", "users"].findOne(id) : null;
+  return entityBase ? entityBase.tenant("central").collection("users").findOne(id) : null;
 } 
 // #endregion getUser
 
