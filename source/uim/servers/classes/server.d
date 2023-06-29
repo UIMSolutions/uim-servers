@@ -10,7 +10,6 @@ import uim.servers;
 
 class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager  {
 	this() { super(); }
-	this(ISessionManager aSessionManager) { this().sessionManager(aSessionManager); }
 
   mixin(TProperty!("IEntityBase", "entityBase"));
 
@@ -22,20 +21,19 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   mixin SessionManagerTemplate;
 
   mixin(TProperty!("ILayout", "layout"));
+
+  mixin(TProperty!("DLayoutContainer", "layoutContainer"));
   mixin LayoutManagerTemplate;
-  mixin ViewManagerTemplate;
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    securityOptions(SRVSecurityOptions);
-    securityController(SRVSecurityController);
-    sessionManager(SessionManager); 
+/*     securityOptions(SRVSecurityOptions);
+    securityController(SRVSecurityController); */
     
     controllerContainer(ControllerContainer);
     sessionContainer(SessionContainer);
     layoutContainer(LayoutContainer);
-    viewContainer(ViewContainer);
   }
 
 

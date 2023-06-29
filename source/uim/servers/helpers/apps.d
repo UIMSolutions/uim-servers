@@ -8,8 +8,8 @@ module uim.servers.helpers.apps;
 import uim.servers;
 @safe:
 
-auto getApp(DEntityBase database, string id) {
-  if (database) return database["central", "apps"].findOne(["id":id]);
+auto getApp(DEntityBase entityBase, string id) {
+  if (entityBase) return entityBase["central", "apps"].findOne(["id":id]);
   return null; }
 unittest {
   version(uim_servers) {

@@ -21,12 +21,12 @@ string getUserId(STRINGAA reqParameters) {
 } 
  */
 // #region getUser
-auto getUser(Json sessionToken, DEntityBase database, string id) {
+auto getUser(Json sessionToken, DEntityBase entityBase, string id) {
   DEntity user;
 
-  if (database) {
+  if (entityBase) {
     if (sessionToken != Json(null) && "userId" in sessionToken) // Try to find user from sessionToken 
-      user = getUser(database, sessionToken["userId"].get!string); 
+      user = getUser(entityBase, sessionToken["userId"].get!string); 
     if (!user && id.isUUID) // Not found user, try again 
       user = getUser(database, id);
   }
@@ -34,20 +34,20 @@ auto getUser(Json sessionToken, DEntityBase database, string id) {
   return user;
 } 
 
-auto getUser(DEntityBase database, string id) {
-  return id.isUUID ? getUser(database, UUID(id)) : null;
+auto getUser(DEntityBase entityBase, string id) {
+  return id.isUUID ? getUser(entityBase, UUID(id)) : null;
 } 
 
-auto getUser(DEntityBase database, UUID id) {
-  return database ? database["central", "users"].findOne(id) : null;
+auto getUser(DEntityBase entityBase, UUID id) {
+  return entityBase ? entityBase["central", "users"].findOne(id) : null;
 } 
 // #endregion getUser
 
-auto getUserSites(DEntityBase database, string id) {
+auto getUserSites(DEntityBase entityBase, string id) {
   DEntity[] dbSites;
-  if (auto dbUser = getUser(database, id)) // User in db exists 
+  if (auto dbUser = getUser(entityBase, id)) // User in db exists 
     foreach (siteId; dbUser["sites"].split(";")) // For every siteId  
-      if (auto dbSite = getSite(database, UUID(siteId))) // If site exists in db 
+      if (auto dbSite = getSite(entityBase, UUID(siteId))) // If site exists in db 
         dbSites ~= dbSite;
 
   return dbSites;

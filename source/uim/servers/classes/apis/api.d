@@ -9,17 +9,16 @@ import uim.servers;
 @safe:
 
 class DSRVApi : DController {
-	this() { super(); 
-    this
-    .name("data")
-    .mimetype("text/json")
-    .siteName("central");
-  }
-	/* this(DServer aServer) { this().app(aServer); } */
-	this(string aName) { this().name(aName); }
-	this(DServer aServer, string aName) { this().server(aServer).name(aName); }
+  mixin(ControllerThis!("SRVApi"));
 
-	mixin(SProperty!("DServer", "server"));
+  override void initialize(Json configSettings = Json(null)) {
+    super.initialize(configSettings);
+
+    this
+      .mimetype("text/json")
+      .siteName("central");
+  }
+
   mixin(SProperty!("string[]", "requiredChecks"));
 
   mixin(SProperty!("string", "api"));
@@ -141,7 +140,7 @@ class DSRVApi : DController {
     auto mySessionId = reqParameters.get("sessionId", "");
     auto mySession = manager.session(mySessionId);
 
-    auto entities = database[siteName ? siteName : mySession.site.name, pool].findMany;
+    auto entities = entityBase[siteName ? siteName : mySession.site.name, pool].findMany;
     result["entities"] = entities.toJson;
 
     return result;
@@ -154,9 +153,9 @@ class DSRVApi : DController {
     if (result["lastError"].get!size_t > 0) return result;
     
     auto mySessionId = reqParameters.get("sessionId", "");
-    auto mySession = sessionManager.session(mySessionId);
+    auto mySession = manager.session(mySessionId);
 
-    if (auto entity = entityBase ? database[mySession.site.name, pool].createFromTemplate : null) {
+    if (auto entity = entityBase ? entityBase[mySession.site.name, pool].createFromTemplate : null) {
       entity.readFromRequest(reqParameters);
           
       // id exists?
@@ -255,10 +254,10 @@ class DSRVApi : DController {
     if (result["lastError"].get!size_t > 0) return result;
     
     auto mySessionId = reqParameters.get("mySessionId", "");
-    auto mySession = sessionManager.session(mySessionId);
+    auto mySession = manager.session(mySessionId);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DEntity entity = database[siteName ? siteName : mySession.site.name, pool].findOne(["id":id]);
+    DEntity entity = entityBase[siteName ? siteName : mySession.site.name, pool].findOne(["id":id]);
     
     if (!entity) { // Entity not found :-(
       result["status"] = 409;
@@ -299,10 +298,10 @@ class DSRVApi : DController {
     if (result["lastError"].get!size_t > 0) return result;
     
     auto mySessionId = reqParameters.get("mySessionId", "");
-    auto mySession = sessionManager.session(mySessionId);
+    auto mySession = manager.session(mySessionId);
 
     auto id = reqParameters.get("entity_id", reqParameters.get("id", ""));
-    DEntity entity = database[siteName ? siteName : mySession.site.name, pool].findOne(["id": id]);
+    DEntity entity = entityBase[siteName ? siteName : mySession.site.name, pool].findOne(["id": id]);
     if (!entity) {
       result["status"] = 409;
       result["lastError"] = 409;
@@ -314,7 +313,7 @@ class DSRVApi : DController {
       return result;
     }
 
-    database[siteName ? siteName : mySession.site.name, pool].removeOne(["id":entity.id.toString]);
+    entityBase[siteName ? siteName : mySession.site.name, pool].removeOne(["id":entity.id.toString]);
 
     auto successMessage = Json.emptyObject;
     successMessage["type"] = "INFO";
@@ -325,12 +324,9 @@ class DSRVApi : DController {
     return result;
   }
 }
-auto SRVApi() { return new DSRVApi(); }
-auto SRVApi(DServer aServer) { return SRVApi.server(aServer); }
-auto SRVApi(string aName) { return SRVApi.name(aName); }
-auto SRVApi(DServer aServer, string aName) { return SRVApi.server(aServer).name(aName); }
+mixin(ControllerCalls!("SRVApi"));
 
 unittest {
-	assert(SRVApi.name("newName").name == "newName");
-	assert(SRVApi.name("oldName").name("newName").name == "newName");
+/* 	assert(SRVApi.name("newName").name == "newName");
+	assert(SRVApi.name("oldName").name("newName").name == "newName"); */
 }

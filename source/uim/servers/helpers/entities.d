@@ -12,8 +12,8 @@ string getEntityId(HTTPServerRequest req, STRINGAA reqParameters) {
   return reqParameters.get("entity_id", reqParameters.get("id", ""));
 } 
   
-string getEntityId(DEntityBase database, string sessionId, STRINGAA reqParameters) { 
-  if (database) return getEntityId(database["central", "sessions"].findOne(["id":sessionId]).toJson, reqParameters);
+string getEntityId(DEntityBase entityBase, string sessionId, STRINGAA reqParameters) { 
+  if (entityBase) return getEntityId(entityBase["central", "sessions"].findOne(["id":sessionId]).toJson, reqParameters);
   return getEntityId(reqParameters);
 } 
 

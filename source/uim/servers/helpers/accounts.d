@@ -16,8 +16,8 @@ unittest {
   }}
 
 auto getAccountPasswords(DEntityBase database, string id) {
-  auto account = getAccount(database, id);
-  if (account) return database["central", "passwords"].findMany(["accountId":account["id"]]);
+  auto account = getAccount(entityBase, id);
+  if (account) return entityBase["central", "passwords"].findMany(["accountId":account["id"]]);
   return null; } 
 unittest {
   version(uim_servers) {

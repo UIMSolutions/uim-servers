@@ -13,10 +13,7 @@ class DSRVController {
   this(DSRVApi myApi) { this(); this.api(myApi); }
 
   mixin(SProperty!("DSRVApi", "api"));
-  auto database() {
-    if (api && api.server) return api.server.database;
-    return null;
-  }
+  mixin EntityBaseTemplate;
 
   Json run(STRINGAA parameters) {
     auto json = Json.emptyObject;

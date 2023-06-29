@@ -40,7 +40,7 @@ class DLoginActionController : DSystemActionController {
     auto lastAccessedOn = toTimestamp(now());
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse -> New login entity");
     
-    if (auto myTenant = (database ? database["systems"] : null)) {
+    if (auto myTenant = (entityBase ? entityBase.tenant("systems") : null)) {
       this.logins = myTenant["system_logins"];
 
       auto login = this.logins.createFromTemplate;

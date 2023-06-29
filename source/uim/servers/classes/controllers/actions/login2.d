@@ -34,7 +34,7 @@ class DLogin2ActionController : DSystemActionController {
     if (!password) { this.error("database_password_missing"); return false; }
 
     options["redirect"] = "/"; 
-    debug writeln(sessionManager.session(options).debugInfo);
+    debug writeln(manager.session(options).debugInfo);
 
     return true; 
   }
