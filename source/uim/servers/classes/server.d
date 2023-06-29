@@ -8,17 +8,34 @@ module uim.servers.classes.server;
 import uim.servers;
 @safe:
 
-class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
+class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager  {
 	this() { super(); }
 	this(ISessionManager aSessionManager) { this().sessionManager(aSessionManager); }
+
+  mixin(TProperty!("IEntityBase", "entityBase"));
+
+  // #region controllerContainer
+  mixin(TProperty!("DControllerContainer", "controllerContainer"));
+  mixin ControllerManagerTemplate;
+
+  mixin(TProperty!("DSessionContainer", "sessionContainer"));
+  mixin SessionManagerTemplate;
+
+  mixin(TProperty!("ILayout", "layout"));
+  mixin LayoutManagerTemplate;
+  mixin ViewManagerTemplate;
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .securityOptions(SRVSecurityOptions)
-      .securityController(SRVSecurityController)
-      .sessionManager(SessionManager); 
+    securityOptions(SRVSecurityOptions);
+    securityController(SRVSecurityController);
+    sessionManager(SessionManager); 
+    
+    controllerContainer(ControllerContainer);
+    sessionContainer(SessionContainer);
+    layoutContainer(LayoutContainer);
+    viewContainer(ViewContainer);
   }
 
 
@@ -31,22 +48,8 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager  {
   mixin(OProperty!("size_t", "versionNumber"));
 
   // Interfaces
-  mixin(OProperty!("DEntityBase", "database"));
-
-  protected ILayout _layout;
-	@property O layout(this O)(ILayout newlayout) { 
-    _layout = newlayout; 
-    return cast(O)this; }
-  
-  ILayout layout() {
-    debugMethodCall(moduleName!DServer~":DServer("~this.name~")::layout()");
-    return _layout;
-  }
-
   mixin(OProperty!("DRoute[HTTPMethod][string]", "routes"));
 
-  mixin(OProperty!("ISessionManager", "sessionManager"));
-  
   // Main Containers - Allways first
   mixin(OProperty!("DMVCLinkContainer", "links"));
   mixin(OProperty!("DMVCMetaContainer", "metas"));
