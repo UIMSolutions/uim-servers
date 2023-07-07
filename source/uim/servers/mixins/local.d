@@ -1,4 +1,4 @@
-module source.uim.servers.mixins.local;
+module uim.servers.mixins.local;
 
 template ImportLocal(string name) {
   const char[] ImportLocal = `

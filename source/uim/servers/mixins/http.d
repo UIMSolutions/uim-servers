@@ -1,4 +1,4 @@
-module source.uim.servers.mixins.http;
+module uim.servers.mixins.http;
 
 template SetHTTP() {
   const char[] SetHTTP = `

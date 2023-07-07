@@ -1,4 +1,4 @@
-module source.uim.servers.mixins.entity;
+module uim.servers.mixins.entity;
 
 // CRUDI router calls
 template routerEntityCalls(string callName, string controllerName, string serverApp) {

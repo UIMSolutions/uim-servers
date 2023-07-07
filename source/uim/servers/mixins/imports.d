@@ -1,2 +1,2 @@
-module source.uim.servers.mixins.imports;
+module uim.servers.mixins.imports;
 
