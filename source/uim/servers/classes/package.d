@@ -1,10 +1,8 @@
 module uim.servers.classes;
 
 public {
-  import uim.servers.classes.server;
-}
-
-public {
+  import uim.servers.classes.servers;
+  
   import uim.servers.classes.apis;
   import uim.servers.classes.apps;
   import uim.servers.classes.authentications;

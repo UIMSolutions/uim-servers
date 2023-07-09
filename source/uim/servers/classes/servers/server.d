@@ -3,15 +3,15 @@
 	license: subject to the terms of the apache 2.0 license, as written in the included license.txt file.  
 	authors: ozan nurettin süel (sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.servers.classes.server;
+module uim.servers.classes.servers.server;
 
 import uim.servers;
 @safe:
 
 class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager  {
 	this() { super(); }
-  this(string aName) { this(); name(aName); }
-  this(string aName, string aRootPath) { this(aName); rootPath(aRootPath); }
+  this(string aName) { this().name(aName); }
+  this(string aName, string aRootPath) { this(aName).rootPath(aRootPath); }
 
   mixin(TProperty!("IEntityBase", "entityBase"));
 
