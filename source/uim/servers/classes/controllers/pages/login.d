@@ -6,8 +6,8 @@
 module uim.servers.classes.controllers.pages.login;
 
 import uim.servers;
-@safe:
 
+@safe:
 class DLoginPageController : DPageController {
   mixin(ControllerThis!("LoginPageController"));
 
@@ -25,7 +25,8 @@ override void initialize(Json configSettings = Json(null)) {
         })
       });`) */
     .parameter("pageTitle", "Anmeldung")
-    .parameter("pageBreadcrumbs", `<ol class="breadcrumb" aria-label="breadcrumbs">
+    .parameter("pageBreadcrumbs", 
+`<ol class="breadcrumb" aria-label="breadcrumbs">
   <li class="breadcrumb-item"><a href="#">Start</a></li>
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Anmeldung (Kennung)</a></li>
 </ol>`)

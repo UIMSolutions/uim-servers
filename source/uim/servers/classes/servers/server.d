@@ -8,7 +8,7 @@ module uim.servers.classes.servers.server;
 import uim.servers;
 @safe:
 
-class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager  {
+class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager, IAppManager, IViewManager {
 	this() { super(); }
   this(string aName) { this().name(aName); }
   this(string aName, string aRootPath) { this(aName).rootPath(aRootPath); }
@@ -27,6 +27,14 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   mixin(TProperty!("DLayoutContainer", "layoutContainer"));
   mixin LayoutManagerTemplate;
 
+  mixin(OProperty!("DViewContainer", "viewContainer"));
+  mixin ViewManagerTemplate;
+
+  mixin(OProperty!("DAppContainer", "appContainer"));
+  mixin AppManagerTemplate;
+
+  mixin RouteManagerTemplate;
+
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
@@ -36,19 +44,18 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
     controllerContainer(ControllerContainer);
     sessionContainer(SessionContainer);
     layoutContainer(LayoutContainer);
+    this.appContainer(AppContainer);
   }
 
 
 // #region parameters
     mixin(MVCParameter!("rootPath"));
+    mixin(OProperty!("DServer", "manager"));
   // #endregion parameters
 
   // Application data 
   mixin(OProperty!("UUID", "id"));
   mixin(OProperty!("size_t", "versionNumber"));
-
-  // Interfaces
-  mixin(OProperty!("DRoute[HTTPMethod][string]", "routes"));
 
   // Main Containers - Allways first
   mixin(OProperty!("DMVCLinkContainer", "links"));
@@ -58,39 +65,7 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   
   mixin(OProperty!("DSRVSecurityController", "securityController")); 
   mixin(OProperty!("DSRVSecurityOptions", "securityOptions"));
-  mixin(OProperty!("DApp[]", "apps"));
   O securityOptions(this O)(bool[string] newOptions) { this.securityOptions(SRVSecurityOptions(newOptions)); return cast(O)this; }  
-
-  auto routesPaths() {
-    return _routes.keys; 
-  }
-
-  auto routesAtPath(string path) {
-    debug writeln("Get routes at '%s'".format(path));
-    return _routes.get(path, null); 
-  }
-
-  auto route(string path, HTTPMethod method) {
-    debug writeln("Get route at '%s' and '%s'".format(path, method));
-    if (auto routesAtPath = _routes.get(path, null)) {
-      return routesAtPath.get(method, null);
-    } 
-    return null;
-  }
-
-  O addRoute(this O)(DRoute newRoute) {
-    debug writeln("Adding route at '%s'".format(newRoute.path));
-    if (newRoute) {
-      DRoute[HTTPMethod] routesAtPath = _routes.get(newRoute.path, null);
-      routesAtPath[newRoute.method] = newRoute;
-
-      if (auto myController = cast(DController)newRoute.controller) {
-        myController.manager(this);
-      }
-
-      _routes[newRoute.path] = routesAtPath;
-    }
-    return cast(O)this; }
 
   /* override void afterInsertObj(DH5AppObj appObject) {
     super.afterInsertObj(appObject);
@@ -102,7 +77,7 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   } */
 
   deprecated("Next edition") {
-    O register(this O)(URLRouter router) {
+    O registerRouter(this O)(URLRouter router) {
       debugMethodCall(moduleName!DServer~":DServer("~this.name~")::register(this O)(URLRouter router)");
 
       debug writeln("Link Path '%s'".format(rootPath~"*"));
@@ -111,19 +86,6 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
       return cast(O)this;
     }
   }
-
-  // #region App Management
-    O addApps(this O)(DApp[] someApps...) {
-      this.addApps(someApps.dup);
-      return cast(O)this;
-    }
-
-    O addApps(this O)(DApp[] someApps) {
-      someApps.each!(a => a.server(this)); // Owner is server
-      this.apps(this.apps~someApps);
-      return cast(O)this;
-    }
-  // #endregion
 
   // #region Request Handling
     void request(HTTPServerRequest newRequest, HTTPServerResponse newResponse) {
@@ -139,22 +101,37 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
       writeln("newRequest.path    = '%s'".format(newRequest.path));
       writeln("newRequest.path.length = '%s'".format(newRequest.path.length));
 
-      writeln(routesPaths);
-      auto myPath = rootPath.length > 0 ? newRequest.path[rootPath.length..$] : newRequest.path;
+      writeln(routePaths);
+      auto myPath = options.get("path", newRequest.path);
       writeln("myPath = '%s'".format(myPath));
-      if (auto myRoute = route(myPath, newRequest.method)) {
-        debug writeln("Found server route");
 
-        myRoute.controller.request(newRequest, newResponse, options);
-        return;
+      auto myRoutePath = myPath;
+      if (myPath.indexOf(rootPath) == 0) {
+        myRoutePath = myPath[rootPath.length..$];
+        foreach(myRoute; this.routesWithMethod(newRequest.method)) {
+          if (myRoute.path == myRoutePath) {
+            debug writeln("Found server route");
+
+            myRoute.controller.request(newRequest, newResponse, options);
+            return;
+          }
+        }
       }
 
-      foreach(myApp; apps) {
-        if (myApp && (myPath >= myApp.rootPath) && (myPath.indexOf(myApp.rootPath) == 0)) {
+      debug writeln("Searching for app...%s".format(apps.length));
+
+      if (myRoutePath.length == 0) myRoutePath = "/";
+      if (myRoutePath.length > 0) {
+        if (myRoutePath[0] != '/') myRoutePath = "/"~myRoutePath;
+      }
+      foreach(myApp; apps.filter!(a => a !is null).array) {  
+        auto appPath = correctAppPath(myApp.rootPath);
+
+        if (myRoutePath.indexOf(appPath) == 0 || (myRoutePath~"/").indexOf(appPath) == 0) {
           debug writeln("Found App %s".format(myApp.name));
 
           auto myOptions = options.dup;
-          myOptions["path"] = myPath;
+          myOptions["path"] = myRoutePath;
           myApp.request(newRequest, newResponse, myOptions);
           return;
         }
