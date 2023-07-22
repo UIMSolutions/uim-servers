@@ -22,8 +22,6 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   mixin(TProperty!("DSessionContainer", "sessionContainer"));
   mixin SessionManagerTemplate;
 
-  mixin(TProperty!("ILayout", "layout"));
-
   mixin(TProperty!("DLayoutContainer", "layoutContainer"));
   mixin LayoutManagerTemplate;
 
@@ -41,9 +39,10 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
 /*     securityOptions(SRVSecurityOptions);
     securityController(SRVSecurityController); */
     
-    controllerContainer(ControllerContainer);
-    sessionContainer(SessionContainer);
-    layoutContainer(LayoutContainer);
+    this.controllerContainer(ControllerContainer);
+    this.sessionContainer(SessionContainer);
+    this.layoutContainer(LayoutContainer);
+    this.viewContainer(ViewContainer);
     this.appContainer(AppContainer);
   }
 

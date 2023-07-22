@@ -6,8 +6,8 @@
 module uim.servers.classes.controllers.pages.signup;
 
 import uim.servers;
-@safe:
 
+@safe:
 class DSignUpPageController : DPageController {
   mixin(ControllerThis!("SignUpPageController"));
 
@@ -23,9 +23,9 @@ override void initialize(Json configSettings = Json(null)) {
 mixin(ControllerCalls!("SignUpPageController"));
 
 version(test_uim_mvc) { unittest {
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DSignUpPageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(new DSignUpPageController); 
 
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(SignUpPageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(SignUpPageController); 
 }}

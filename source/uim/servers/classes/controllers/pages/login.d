@@ -40,9 +40,9 @@ override void initialize(Json configSettings = Json(null)) {
 mixin(ControllerCalls!("LoginPageController"));
 
 version(test_uim_mvc) { unittest {
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DLoginPageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(new DLoginPageController); 
 
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(LoginPageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(LoginPageController); 
 }}

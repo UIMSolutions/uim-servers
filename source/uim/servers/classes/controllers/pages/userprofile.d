@@ -6,8 +6,8 @@
 module uim.servers.classes.controllers.pages.userprofile;
 
 import uim.servers;
-@safe:
 
+@safe:
 class DUserProfilePageController : DPageController {
   mixin(ControllerThis!("UserProfilePageController"));
 
@@ -16,7 +16,8 @@ override void initialize(Json configSettings = Json(null)) {
 
     this
       .parameter("pageTitle", "Registrierung")
-      .parameter("pageBreadcrumbs", `<ol class="breadcrumb" aria-label="breadcrumbs">
+      .parameter("pageBreadcrumbs", 
+`<ol class="breadcrumb" aria-label="breadcrumbs">
   <li class="breadcrumb-item"><a href="#">Start</a></li>
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Registrierung</a></li>
 </ol>`)
@@ -26,9 +27,9 @@ override void initialize(Json configSettings = Json(null)) {
 mixin(ControllerCalls!("UserProfilePageController"));
 
 version(test_uim_servers) { unittest {
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(new DUserProfilePageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(new DUserProfilePageController); 
 
-    writeln("--- Tests in ", __MODULE__, "/", __LINE__);
-		testPageController(UserProfilePageController); 
+  writeln("--- Tests in ", __MODULE__, "/", __LINE__);
+  testPageController(UserProfilePageController); 
 }}

@@ -16,7 +16,8 @@ override void initialize(Json configSettings = Json(null)) {
     
     this
       .parameter("pageTitle", "Kennung vergessen?")
-      .parameter("pageBreadcrumbs", `<ol class="breadcrumb" aria-label="breadcrumbs">
+      .parameter("pageBreadcrumbs", 
+`<ol class="breadcrumb" aria-label="breadcrumbs">
   <li class="breadcrumb-item"><a href="#">Start</a></li>
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Kennung vergessen</a></li>
 </ol>`)

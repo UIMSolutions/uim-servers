@@ -24,7 +24,8 @@ class DLogin2PageController : DPageController {
         })
       });`) */
       .parameter("pageTitle", "Anmeldung")
-      .parameter("pageBreadcrumbs", `<ol class="breadcrumb" aria-label="breadcrumbs">
+      .parameter("pageBreadcrumbs", 
+`<ol class="breadcrumb" aria-label="breadcrumbs">
   <li class="breadcrumb-item"><a href="#">Start</a></li>
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Anmeldung (Passwort)</a></li>
 </ol>`)
