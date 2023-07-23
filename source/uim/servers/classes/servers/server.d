@@ -8,7 +8,7 @@ module uim.servers.classes.servers.server;
 import uim.servers;
 @safe:
 
-class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager, IAppManager, IViewManager {
+class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessionManager, IAppManager, IViewManager, IRouteManager {
 	this() { super(); }
   this(string aName) { this().name(aName); }
   this(string aName, string aRootPath) { this(aName).rootPath(aRootPath); }
@@ -25,10 +25,10 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
   mixin(TProperty!("DLayoutContainer", "layoutContainer"));
   mixin LayoutManagerTemplate;
 
-  mixin(OProperty!("DViewContainer", "viewContainer"));
+  mixin(TProperty!("DViewContainer", "viewContainer"));
   mixin ViewManagerTemplate;
 
-  mixin(OProperty!("DAppContainer", "appContainer"));
+  mixin(TProperty!("DAppContainer", "appContainer"));
   mixin AppManagerTemplate;
 
   mixin RouteManagerTemplate;
