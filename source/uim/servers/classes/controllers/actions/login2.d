@@ -15,11 +15,11 @@ class DLogin2ActionController : DSystemActionController {
     super.initialize(configSettings); 
 
     this
-      .checks([
+      .addChecks(
         SessionHasLoginCheck, // AppSession checks
         RequestHasPasswordCheck, // Request checks
         DatabaseHasPasswordsCheck
-      ]);
+      );
   }
   
   override bool beforeResponse(STRINGAA options = null) {

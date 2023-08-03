@@ -1,4 +1,5 @@
-# ui.servers.log
+# Package 📦 uim.servers.classes.clalogssses
+
 # UIM Logging Library
 
 The Log library provides a `Log` service locator for interfacing with

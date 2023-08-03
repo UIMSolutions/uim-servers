@@ -619,11 +619,6 @@ class DGeneralLayout : DLayout {
 
 		auto myBody = H5Body(bodyClasses, bodyAttributes, bodyContent);
 
-    debug writeln(myHtml
-      .head(myHead)
-      .body_(myBody)
-      .toString);
-
     return myHtml
       .head(myHead)
       .body_(myBody)

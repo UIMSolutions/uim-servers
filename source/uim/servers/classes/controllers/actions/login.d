@@ -16,7 +16,7 @@ class DLoginActionController : DSystemActionController {
 
     this
     //.nextUrl("/login2") 
-    .checks([DatabaseHasLoginsCheck, DatabaseHasSessionsCheck]); 
+      .addChecks(DatabaseHasLoginsCheck, DatabaseHasSessionsCheck); 
   }
 
   override bool beforeResponse(STRINGAA options = null) {
