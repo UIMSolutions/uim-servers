@@ -8,8 +8,8 @@ module uim.servers.classes.forms.login2;
 import uim.servers;
 
 @safe:
-class DMVCLogin2Form : DForm {
-  mixin(ViewComponentThis!("MVCLogin2Form"));
+class DLogin2Form : DForm {
+  mixin(ViewComponentThis!("Login2Form"));
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
@@ -21,7 +21,7 @@ class DMVCLogin2Form : DForm {
     DH5Obj[] results;
 
     results ~= 
-      H5Form("loginForm", ["card", "card-md"], ["method":"post", "autocomplete":"off", "action":"login2_action"], 
+      H5Form("loginForm", ["card", "card-md"], ["method":"post", "autocomplete":"off", "action":"/login2_action"], 
         BS5InputHidden("loginId", ["name":"loginId"]).value(options.get("loginId", null)),
         H5Div(["card-body"], 
           H5H2(["card-title", "text-center", "mb-4"], "Anmeldung"),
@@ -45,7 +45,7 @@ class DMVCLogin2Form : DForm {
     return results;
   }
 }
-mixin(ViewComponentCalls!("MVCLogin2Form", "DMVCLogin2Form"));
+mixin(ViewComponentCalls!("Login2Form", "DLogin2Form"));
 
 version(test_uim_mvc) { unittest {
     writeln("--- Test in ", __MODULE__, "/", __LINE__);

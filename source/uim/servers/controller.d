@@ -8,7 +8,7 @@ module uim.servers.controller;
 import uim.servers;
 @safe:
 
-class DSRVController : DController {
+/* class DSRVController : DController {
   this() {}
   this(DSRVApi myApi) { this(); this.api(myApi); }
 
@@ -26,3 +26,4 @@ class DSRVController : DController {
 }
 auto SRVController() { return new DSRVController; }
 auto SRVController(DSRVApi myApi) { return new DSRVController(myApi); }
+ */

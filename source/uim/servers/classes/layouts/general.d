@@ -418,16 +418,16 @@ class DGeneralLayout : DLayout {
               UIMNavLink(["d-flex lh-1 text-reset p-0"], ["data-bs-toggle":"dropdown", "href":"#", "aria-label":"Open user menu", "aria-expanded":"false"], 
                 UIMAvatar(["avatar-sm"], ["style":"background-image: url(./static/avatars/000m.jpg)"]),
                 H5Div(["d-none d-xl-block ps-2"], 
-                  H5Div("Paweł Kuna"), H5Div(["mt-1 small text-muted"], "UI Designer")
+                  H5Div("ONS"), H5Div(["mt-1 small text-muted"], "Architect")
                 )
               ),
               H5Div(["dropdown-menu dropdown-menu-end dropdown-menu-arrow"], 
-                UIMDropdownItem.link("#")("Status"),
-                UIMDropdownItem.link("#")("Profile"),
-                UIMDropdownItem.link("#")("Feedback"),
+                UIMDropdownItem.link("/status")("Status"),
+                UIMDropdownItem.link("/profile")("Profile"),
+                UIMDropdownItem.link("/feedback")("Feedback"),
                 UIMDropdownDivider,
-                UIMDropdownItem.link("./settings.html")("Settings"),
-                UIMDropdownItem.link("./sign-in.html")("Logout")
+                UIMDropdownItem.link("/settings")("Settings"),
+                UIMDropdownItem.link("/logout")("Logout")
               )
             )
           ),
@@ -519,16 +519,16 @@ class DGeneralLayout : DLayout {
               UIMNavLink(["d-flex lh-1 text-reset p-0"], ["data-bs-toggle":"dropdown", "href":"#", "aria-label":"Open user menu", "aria-expanded":"false"], 
                 H5Span(["avatar avatar-sm"], ["style":"background-image: url(./static/avatars/000m.jpg)"]),
                 H5Div(["d-none d-xl-block ps-2"], 
-                  H5Div("Paweł Kuna"), H5Div(["mt-1 small text-muted"], "UI Designer")
+                  H5Div("ONS"), H5Div(["mt-1 small text-muted"], "Architect")
                 )
               ),
               H5Div(["dropdown-menu dropdown-menu-end dropdown-menu-arrow"], 
-                UIMDropdownItem.link("#")("Status"),
-                UIMDropdownItem.link("#")("Profile"),
-                UIMDropdownItem.link("#")("Feedback"),
+                UIMDropdownItem.link("/status")("Status"),
+                UIMDropdownItem.link("/profile")("Profile"),
+                UIMDropdownItem.link("/feedback")("Feedback"),
                 UIMDropdownDivider,
-                UIMDropdownItem.link("./settings.html")("Settings"),
-                UIMDropdownItem.link("./sign-in.html")("Logout")
+                UIMDropdownItem.link("/settings")("Settings"),
+                UIMDropdownItem.link("/logout")("Logout")
               )
             )
           )

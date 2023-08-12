@@ -8,7 +8,7 @@ module uim.servers.classes.controllers.actions.login2;
 import uim.servers;
 @safe:
 
-class DLogin2ActionController : DSystemActionController {
+class DLogin2ActionController : DActionController {
   mixin(ControllerThis!("Login2ActionController"));
 
   override void initialize(Json configSettings = Json(null)) {
@@ -16,25 +16,30 @@ class DLogin2ActionController : DSystemActionController {
 
     this
       .addChecks(
-        SessionHasLoginCheck, // AppSession checks
+        HasSessionCheck
+/*         SessionHasLoginCheck, // AppSession checks
         RequestHasPasswordCheck, // Request checks
-        DatabaseHasPasswordsCheck
+        DatabaseHasPasswordsCheck */
       );
   }
   
   override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLogin2ActionController~":DLogin2ActionController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options) || hasError || "redirect" in options) { return false; }
+    if (!super.beforeResponse(options)) { return false; }
+    debug writeln(options);
 
-    auto account = this.accounts.findOne(["name":this.session.login["accountName"]]);
-    if (!account) { this.error("database_account_missing"); return false; }
-    this.session.account = account;
+    if (auto mySession = getSession(this, this.request, options)) {
+      debug writeln("AccountName: ", mySession.accountName);
+      debug writeln("loginPW: ", options.get("loginPW", null));
 
-    auto password = this.passwords.findOne(["accountId": account.id.toString]);
-    if (!password) { this.error("database_password_missing"); return false; }
-
+      if (mySession.accountName == "test" && options.get("loginPW", null) == "test") {
+        mySession.logonMode = true;
+      } 
+    }
+    else {
+      this.response.terminateSession;
+    }
     options["redirect"] = "/"; 
-    debug writeln(manager.session(options).debugInfo);
 
     return true; 
   }

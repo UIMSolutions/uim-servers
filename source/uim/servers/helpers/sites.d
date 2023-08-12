@@ -5,7 +5,7 @@ import uim.servers;
 
 string getSiteId(DEntityBase entityBase, string sessionId, STRINGAA reqParameters) { 
   if (entityBase) 
-    if (auto dbSession = entityBase.tenant("central").collection("sessions").findOne(["id":reqParameters.get("sessionId", "")]))
+    if (auto dbSession = entityBase.entityTenant("central").entityCollection("sessions").findOne(["id":reqParameters.get("sessionId", "")]))
       if (dbSession["siteId"].isUUID) return dbSession["siteId"];
   return getSiteId(reqParameters);
 } 
@@ -30,7 +30,7 @@ auto getSite(DEntityBase entityBase, string id) {
   return id.isUUID ?  getSite(entityBase, UUID(id)) : null; } 
 
 auto getSite(DEntityBase entityBase, UUID id) {
-  return entityBase ?  entityBase.tenant("central").collection("sites").findOne(id) : null; } 
+  return entityBase ?  entityBase.entityTenant("central").entityCollection("sites").findOne(id) : null; } 
 
 // #endregion getSite
 

@@ -22,6 +22,27 @@ class DLogoutPageController : DPageController {
   <li class="breadcrumb-item active" aria-current="page"><a href="#">Abmeldung</a></li>
 </ol>`)
       .title("Abmeldung");
+
+    this
+      .view(LogoutView);
+  }
+
+  override bool beforeResponse(STRINGAA options = null) {
+    debug writeln(moduleName!DLogoutPageController~":DLogoutPageController("~this.name~")::beforeResponse");
+    if (!super.beforeResponse(options)) { return false; }
+    debug writeln(options);
+
+    if (manager) {
+      if (this.request && this.request.session) {
+        manager.removeSession(this.request.session.id);
+      }
+      else { 
+        manager.removeSession(options.get("httpSessionId", null));
+      }
+    }
+    this.response.terminateSession();
+
+    return true;
   }
 }
 mixin(ControllerCalls!("LogoutPageController"));

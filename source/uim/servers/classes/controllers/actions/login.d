@@ -8,39 +8,49 @@ module uim.servers.classes.controllers.actions.login;
 import uim.servers;
 @safe:
 
-class DLoginActionController : DSystemActionController {
+class DLoginActionController : DActionController {
   mixin(ControllerThis!("LoginActionController"));
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings); 
 
-    this
+    /* this
     //.nextUrl("/login2") 
-      .addChecks(DatabaseHasLoginsCheck, DatabaseHasSessionsCheck); 
+      .addChecks(DatabaseHasLoginsCheck, DatabaseHasSessionsCheck); */ 
   }
 
   override bool beforeResponse(STRINGAA options = null) {
+    debug writeln("x1x");
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options) || hasError || "redirect" in options) { return false; }
+    if (!super.beforeResponse(options)) { return false; }
+    debug writeln(options);
 
-    // New Session
+    // Delete old Session
     if (this.request.session) this.response.terminateSession();
-    string internalSessionId = options.get("internalSessionId", "");     
-    if (internalSessionId in internalSessions) internalSessions.remove(internalSessionId);
-    options.remove("internalSessionId");     
+    string httpSessionId = options.get("httpSessionId", null);     
+    if (hasSession(httpSessionId)) {
+      removeSession(httpSessionId);
+    }
+    options.remove("httpSessionId");     
         
-    // internalSession missing, create new one
+    // httpSession missing, create new one
     debug writeln(moduleName!DLoginActionController~":DLoginActionController::beforeResponse -> Read httpSession");
     auto httpSession = this.response.startSession();
-    internalSessions[httpSession.id] = new DSession(httpSession);
-    options["internalSessionId"] = httpSession.id;
+
+    auto mySession = new DSession(httpSession);
+    addSession(httpSession.id, mySession);
+    options["httpSessionId"] = httpSession.id;
 
     // Create login and session object 
-    this.session(internalSessions[httpSession.id]);
-    auto lastAccessedOn = toTimestamp(now());
+    mySession.lastAccessedOn = toTimestamp(now());
+    mySession.accountName = options.get("accountName", null);
+    mySession.host = options.get("host", null);
+    mySession.loginId = to!string(uniform(0, 1024));
+    mySession.logonMode = false;
+    debug writeln(mySession.debugInfo);
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse -> New login entity");
     
-    if (auto myTenant = (entityBase ? entityBase.tenant("systems") : null)) {
+    /* if (auto myTenant = (entityBase ? entityBase.tenant("systems") : null)) {
       this.logins = myTenant["system_logins"];
 
       auto login = this.logins.createFromTemplate;
@@ -66,8 +76,9 @@ class DLoginActionController : DSystemActionController {
       debug writeln(moduleName!DLoginActionController~":DLoginActionController::beforeResponse -> Go to login2");
       options["redirect"] = "/login2?loginId="~this.session.login.id.toString; 
       debug writeln(this.session.debugInfo); 
-    }
+    } */
 
+    options["redirect"] = "/login2?loginId="~mySession.loginId; 
     return true;
   }
 }

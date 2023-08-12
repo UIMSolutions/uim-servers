@@ -9,12 +9,12 @@ import uim.servers;
 @safe:
 
 auto getAccount(DEntityBase entityBase, string id) {
-  return entityBase ? entityBase.tenant("central").collection("accounts").findOne(["id":id]) : null; 
+  return entityBase ? entityBase.entityTenant("central").entityCollection("accounts").findOne(["id":id]) : null; 
 }
 
 auto getAccountPasswords(DEntityBase entityBase, string id) {
   auto account = getAccount(entityBase, id);
-  if (account) return entityBase.tenant("central").collection("passwords").findMany(["accountId":account["id"]]);
+  if (account) return entityBase.entityTenant("central").entityCollection("passwords").findMany(["accountId":account["id"]]);
   return null; 
 } 
 
@@ -23,7 +23,7 @@ auto getAccountPasswordActive(DEntityBase entityBase, string id) {
     auto selector = Json.emptyObject;
     selector["accountId"] = account["id"];
     selector["active"] = true;
-    return entityBase.tenant("central").collection("passwords").findOne(selector); } 
+    return entityBase.entityTenant("central").entityCollection("passwords").findOne(selector); } 
 
   return null; 
 }

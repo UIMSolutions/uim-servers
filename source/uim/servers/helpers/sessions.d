@@ -5,7 +5,7 @@ import uim.servers;
 
 auto getSessionToken(DEntityBase entityBase, string sessionId) {
   if (entityBase) 
-    if (auto session = entityBase.tenant("central").collection("sessions").findOne(["id": sessionId])) return session.toJson;
+    if (auto session = entityBase.entityTenant("central").entityCollection("sessions").findOne(["id": sessionId])) return session.toJson;
   return Json(null);
 } 
 

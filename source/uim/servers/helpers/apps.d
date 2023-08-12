@@ -9,7 +9,7 @@ import uim.servers;
 @safe:
 
 auto getApp(DEntityBase entityBase, string id) {
-  if (entityBase) return entityBase.tenant("central").collection("apps").findOne(["id":id]);
+  if (entityBase) return entityBase.entityTenant("central").entityCollection("apps").findOne(["id":id]);
   return null; }
 unittest {
   version(uim_servers) {

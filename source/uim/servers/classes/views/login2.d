@@ -20,7 +20,7 @@ class DLogin2View : DView {
         BS5Row("logo", ["text-center"],  
           H5A(["href":"https://www.sicherheitsschmiede.de"], 
             H5Img(["src":"/img/logo.png", "height":"80", "alt":"Sicherheitsschmiede - Sicher im Internet"]))),
-        BS5Row("form", /* Login2Form.toH5(options) */))
+        BS5Row("form",  Login2Form.toH5(options) ))
     ].toH5;
   }
 }

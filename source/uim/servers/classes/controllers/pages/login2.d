@@ -15,27 +15,42 @@ class DLogin2PageController : DPageController {
     super.initialize(configSettings);
 
     this
-    .title("Anmeldung (Passwort)")
-/*     .scripts(`
-      window.addEventListener('load', (event) => {
-        document.getElementById("loginForm").addEventListener("submit", event => {
-          event.preventDefault();
-          login("loginForm");
-        })
-      });`) */
-      .parameter("pageTitle", "Anmeldung")
-      .parameter("pageBreadcrumbs", 
-`<ol class="breadcrumb" aria-label="breadcrumbs">
-  <li class="breadcrumb-item"><a href="#">Start</a></li>
-  <li class="breadcrumb-item active" aria-current="page"><a href="#">Anmeldung (Passwort)</a></li>
-</ol>`)
       .title("Anmeldung (Passwort)")
-      .view(Login2View(this));
-    
+  /*     .scripts(`
+        window.addEventListener('load', (event) => {
+          document.getElementById("loginForm").addEventListener("submit", event => {
+            event.preventDefault();
+            login("loginForm");
+          })
+        });`) */
+        .parameter("pageTitle", "Anmeldung")
+        .parameter("pageBreadcrumbs", 
+  `<ol class="breadcrumb" aria-label="breadcrumbs">
+    <li class="breadcrumb-item"><a href="#">Start</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="#">Anmeldung (Passwort)</a></li>
+  </ol>`)
+        .title("Anmeldung (Passwort)")
+        .view(Login2View(this));
+      
     this.scripts.addLinks(
-      "/js/apps/app.js",   
-      "/js/apps/login2.js");   
+        "/js/apps/app.js",   
+        "/js/apps/login2.js");   
+
+    this
+      .addChecks(HasHTTPSessionCheck);
+  }
+
+  override bool beforeResponse(STRINGAA options = null) {
+    debug writeln(moduleName!DLogin2PageController~":DLogin2PageController("~this.name~")::beforeResponse");
+    if (!super.beforeResponse(options)) { return false; }
+
+    if (auto mySession = getSession(this, this.request, options)) {
+      debug writeln(mySession.debugInfo);
     }
+    debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse -> New login entity");
+
+    return true;
+  }
 }
 mixin(ControllerCalls!("Login2PageController"));
 
