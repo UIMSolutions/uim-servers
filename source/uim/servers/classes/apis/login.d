@@ -22,7 +22,7 @@ class DSRVLoginData : DSRVApi {
       loginToken["peer"] = reqParameters.get("peer", "");
       if (auto ds = database) {
         auto account = ds.findOne("central", "accounts", ["name": reqParameters.get("loginAccount", "")]);
-        if (account == Json(null)) 
+        if (account.isEmpty) 
           loginToken["accountId"] = ""; 
         else 
           loginToken["accountId"] = account["id"];

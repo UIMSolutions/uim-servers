@@ -37,7 +37,7 @@ public {
 bool notValidSession(string sessionToken, string[string] parameters = null) { return !isValidSession(sessionToken, parameters); }
 
 bool isValidSession(string sessionToken, string[string] parameters = null) {
-  if (sessionToken == "demo") return true;
+  if (sessionToken == "demo") { return true; }
   return false;
 }
 

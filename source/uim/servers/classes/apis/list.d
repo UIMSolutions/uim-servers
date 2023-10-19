@@ -29,7 +29,7 @@ class DSRVListData : DSRVApi {
     if (auto ds = database) {
       if (siteRequired) {
         auto site = getSite(ds, result["siteId"].get!string);
-        if (site == Json(null)) {
+        if (site.isEmpty) {
           result["error"] = 9999;
           result["status"] = 409;
 

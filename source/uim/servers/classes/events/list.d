@@ -67,7 +67,7 @@ version(test_uim_servers) {
     // Checks if an event is in the list.
     bool hasEvent(string aName) {
       foreach (ev; _events) {
-        if (ev.name == aName) return true;
+        if (ev.name == aName) { return true; }
       }
 
       return false;

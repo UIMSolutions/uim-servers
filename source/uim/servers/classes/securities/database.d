@@ -26,7 +26,7 @@ class DSRVSecurityControllerDatabase : DSRVSecurityController {
           }
         }
         page.session = dSource.findOne("central", "sessions", ["id": page.sessionId]);
-        if (page.session == Json(null)) {
+        if (page.session.isEmpty) {
           debug writeln("No session");
           auto e = Json.emptyObject;
           e["code"] = 31;
@@ -51,7 +51,7 @@ class DSRVSecurityControllerDatabase : DSRVSecurityController {
         }
 
         auto login = dSource.findOne("central", "logins", ["id": page.loginId]);
-        if (login == Json(null)) {
+        if (login.isEmpty) {
           debug writeln("No login");
           auto e = Json.emptyObject;
           e["code"] = 21;
@@ -85,7 +85,7 @@ class DSRVSecurityControllerDatabase : DSRVSecurityController {
           }
         }
         page.site = dSource.findOne("central", "sites", ["id": page.siteId]);
-        if (page.site == Json(null)) {
+        if (page.site.isEmpty) {
           debug writeln("No site");
           auto e = Json.emptyObject;
           e["code"] = 31;

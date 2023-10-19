@@ -21,7 +21,7 @@ class DSRVLogin2Data : DSRVApi {
     
     if (auto ds = database) {
       auto loginToken = ds.findOne("central", "logins", ["id": loginId]);
-      if (loginToken == Json(null)) {
+      if (loginToken.isEmpty) {
         result["status"] = 401;
 
         auto message = Json.emptyObject;
@@ -36,7 +36,7 @@ class DSRVLogin2Data : DSRVApi {
 
       accountId = loginToken["accountId"].get!string;
       auto account = ds.findOne("central", "accounts", ["id":accountId]);
-      if (account == Json(null)) { // Unknown account
+      if (account.isEmpty) { // Unknown account
         result["status"] = 401;
 
         auto message = Json.emptyObject;
@@ -50,7 +50,7 @@ class DSRVLogin2Data : DSRVApi {
       }    
 
       auto password = ds.findOne("central", "passwords", ["accountId":accountId]);
-      if (password == Json(null)) { // Unknown password
+      if (password.isEmpty) { // Unknown password
         result["status"] = 401;
 
         auto message = Json.emptyObject;
@@ -94,7 +94,7 @@ class DSRVLogin2Data : DSRVApi {
       userId = account["userId"].get!string;
       debug writeln("Looking for user ", userId);
       auto user = ds.findOne("central", "users", ["id":userId]);
-      if (user == Json(null)) { // Unknown account
+      if (user.isEmpty) { // Unknown account
         debug writeln("user not found");
         result["status"] = 401;
 

@@ -37,18 +37,21 @@ auto getEntity(Json sessionToken, DEntityBase entityBase, string id) {
   if ((sessionToken != Json(null)) && ("entityId" in sessionToken)) {
     return entityBase.entityTenant("central").entityCollection("entities").findOne(["id":sessionToken["entityId"].get!string]);
   }
-  // else if ((result == Json(null)) && (database)) return database.findOne("central", "entities", ["id":id]);
+  // else if ((result.isEmpty) && (database)) return database.findOne("central", "entities", ["id":id]);
   
   return null;
 } 
 
 auto getEntitySites(DEntityBase database, string id) {
-  DEntity[] sites;
-  if (auto entity = getEntity(database, id)) {
-    foreach (entityId; entity["sites"].split(";")) {
-      if (auto site = getSite(database, UUID(entityId))) sites ~= site;
-    }
-  } 
+  // Preconditions
+  if (database is null || id.isEmpty) { return null; }
 
-  return sites;
+  // Body
+  auto entity = getEntity(database, id);
+  if (entity is null) { return null; }
+
+  return entity["sites"].split(";")
+    .map!(uuid => getSite(database, UUID(uuid)))
+    .filter!(s => s !is null) 
+    .each!(s => sites ~= s);
 } 

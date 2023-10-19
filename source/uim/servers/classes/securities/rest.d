@@ -25,7 +25,7 @@ class DSRVSecurityControllerRest : DController {
             logInfo("login: %s", page.login);
           }
         );
-        if (page.login == Json(null)) {
+        if (page.login.isEmpty) {
           debug writeln("No login");
           auto e = Json.emptyObject;
           e["code"] = 21;
@@ -48,7 +48,7 @@ class DSRVSecurityControllerRest : DController {
             logInfo("session: %s", page.session);
           }
         );
-        if (page.session == Json(null)) {
+        if (page.session.isEmpty) {
           debug writeln("No session");
           auto e = Json.emptyObject;
           e["code"] = 31;
@@ -71,7 +71,7 @@ class DSRVSecurityControllerRest : DController {
             logInfo("site: %s", page.site);
           }
         );
-        if (page.site == Json(null)) {
+        if (page.site.isEmpty) {
           debug writeln("No site");
           auto e = Json.emptyObject;
           e["code"] = 31;
