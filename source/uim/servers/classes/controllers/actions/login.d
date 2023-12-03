@@ -22,7 +22,9 @@ class DLoginActionController : DActionController {
   override bool beforeResponse(STRINGAA options = null) {
     debug writeln("x1x");
     debug writeln(moduleName!DLoginActionController~":DLoginActionController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options)) { return false; }
+    if (!super.beforeResponse(options)) { 
+      return false; 
+    }
     debug writeln(options);
 
     // Delete old Session

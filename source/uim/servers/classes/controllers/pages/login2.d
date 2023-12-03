@@ -42,7 +42,9 @@ class DLogin2PageController : DPageController {
 
   override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLogin2PageController~":DLogin2PageController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options)) { return false; }
+    if (!super.beforeResponse(options)) { 
+      return false; 
+    }
 
     if (auto mySession = getSession(this, this.request, options)) {
       debug writeln(mySession.debugInfo);

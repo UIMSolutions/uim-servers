@@ -25,7 +25,9 @@ class DLogin2ActionController : DActionController {
   
   override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLogin2ActionController~":DLogin2ActionController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options)) { return false; }
+    if (!super.beforeResponse(options)) { 
+      return false; 
+    }
     debug writeln(options);
 
     if (auto mySession = getSession(this, this.request, options)) {

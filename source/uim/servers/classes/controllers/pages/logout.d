@@ -29,7 +29,9 @@ class DLogoutPageController : DPageController {
 
   override bool beforeResponse(STRINGAA options = null) {
     debug writeln(moduleName!DLogoutPageController~":DLogoutPageController("~this.name~")::beforeResponse");
-    if (!super.beforeResponse(options)) { return false; }
+    if (!super.beforeResponse(options)) { 
+      return false; 
+    }
     debug writeln(options);
 
     if (manager) {

@@ -35,10 +35,14 @@ auto getSite(DEntityBase entityBase, UUID id) {
 // #endregion getSite
 
 auto getSiteApps(DEntityBase entityBase, string id) {
-  DEntity[] apps;
-  if (auto site = getSite(entityBase, id)) 
-    foreach (appId; site["apps"].split(";")) 
-      if (auto app = getApp(entityBase, appId)) apps ~= app;
+  if (entityBase is null) { return null; }
+   
+  auto site = getSite(entityBase, id);
+  if (site is null) { return null; }
+
+  return site["apps"].split(";")
+      .map!(id => getApp(entityBase, id))
+      .array;
 
   return apps;
 } 
