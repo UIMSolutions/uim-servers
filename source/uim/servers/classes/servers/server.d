@@ -129,9 +129,9 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
         if (myRoutePath.indexOf(appPath) == 0 || (myRoutePath~"/").indexOf(appPath) == 0) {
           debug writeln("Found App %s".format(myApp.name));
 
-          auto myOptions = options.dup;
-          myOptions["path"] = myRoutePath;
-          myApp.request(newRequest, newResponse, myOptions);
+          auto options = options.dup;
+          options["path"] = myRoutePath;
+          myApp.request(newRequest, newResponse, options);
           return;
         }
       }
