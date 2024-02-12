@@ -106,7 +106,7 @@ class DServer : DMVCObject, IServer, IRequestHandler, IControllerManager, ISessi
 
       auto myRoutePath = myPath;
       if (myPath.indexOf(rootPath) == 0) {
-        myRoutePath = myPath[rootPath.length..$];
+        myRoutePath = myPath[rootPath.length..];
         foreach(myRoute; this.routesWithMethod(newRequest.method)) {
           if (myRoute.path == myRoutePath) {
             debug writeln("Found server route");
