@@ -42,15 +42,15 @@ class DEventManager : IEventManager {
 /*     public static function instance(?EventManager manager = null)
     {
         if (manager instanceof EventManager) {
-            static::_generalManager = manager;
+            _generalManager = manager;
         }
-        if (empty(static::_generalManager)) {
-            static::_generalManager = new static();
+        if (empty(_generalManager)) {
+            _generalManager = new static();
         }
 
-        static::_generalManager._isGlobal = true;
+        _generalManager._isGlobal = true;
 
-        return static::_generalManager;
+        return _generalManager;
     } */
 
     /**
@@ -68,14 +68,14 @@ class DEventManager : IEventManager {
 
         argCount = func_num_args();
         if (argCount === 2) {
-            _listeners[eventKey][static::defaultPriority][] = [
+            _listeners[eventKey][defaultPriority][] = [
                 "callable" => options,
             ];
 
             return this;
         }
 
-        priority = options["priority"] ?? static::defaultPriority;
+        priority = options["priority"] ?? defaultPriority;
         _listeners[eventKey][priority][] = [
             "callable" => callable,
         ];
@@ -142,7 +142,7 @@ class DEventManager : IEventManager {
                 );
             }
 
-            foreach (array_keys(_listeners) as name) {
+            foreach (_listeners.keys as name) {
                 off(name, eventKey);
             }
 
@@ -213,8 +213,8 @@ class DEventManager : IEventManager {
       auto listeners = listeners(myEvent.name);
       /* if (_trackEvents) { /* addEventToList(event); * / }
 
-       if (_isGlobal && static::instance().isTrackingEvents()) {
-          static::instance().addEventToList(event);
+       if (_isGlobal && instance().isTrackingEvents()) {
+          instance().addEventToList(event);
       } */
 
       if (listeners.empty) return myEvent;
@@ -249,10 +249,10 @@ class DEventManager : IEventManager {
         localListeners = prioritisedListeners(eventKey);
         localListeners = empty(localListeners) ? [] : localListeners;
       }
-      IEventListener[] globalListeners; // TODO = static::instance().prioritisedListeners(eventKey);
+      IEventListener[] globalListeners; // TODO = instance().prioritisedListeners(eventKey);
       globalListeners = globalListeners.empty ? [] : globalListeners;
 
-/*       priorities = array_keys(globalListeners)~array_keys(localListeners);
+/*       priorities = array_keys(globalListeners)~localListeners.keys;
       priorities = array_unique(priorities);
       asort(priorities);
  */
