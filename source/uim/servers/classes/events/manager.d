@@ -252,7 +252,7 @@ class DEventManager : IEventManager {
       IEventListener[] globalListeners; // TODO = instance().prioritisedListeners(eventKey);
       globalListeners = globalListeners.empty ? [] : globalListeners;
 
-/*       priorities = array_keys(globalListeners)~localListeners.keys;
+/*       priorities = globalListeners.keys~localListeners.keys;
       priorities = array_unique(priorities);
       asort(priorities);
  */
@@ -284,7 +284,7 @@ class DEventManager : IEventManager {
       matches = array_intersect_key(
           _listeners,
           array_flip(
-              preg_grep(matchPattern, array_keys(_listeners), 0)
+              preg_grep(matchPattern, _listeners.keys, 0)
           )
       );
  */
