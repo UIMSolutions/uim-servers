@@ -11,7 +11,7 @@ import uim.servers;
 class DLoginPageController : DPageController {
   mixin(ControllerThis!("LoginPageController"));
 
-override void initialize(Json configSettings = Json(null)) {
+override bool initialize(IData[string] configSettings = null) {
     debugMethodCall(moduleName!DLoginPageController~"::DLoginPageController("~this.name~"):initialize");   
     super.initialize(configSettings);
 

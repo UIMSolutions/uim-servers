@@ -11,7 +11,7 @@ import uim.servers;
 class DLogin2ActionController : DActionController {
   mixin(ControllerThis!("Login2ActionController"));
 
-  override void initialize(Json configSettings = Json(null)) {
+  override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings); 
 
     this

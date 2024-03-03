@@ -11,7 +11,7 @@ import uim.servers;
 class DSignUpForm : DForm {
   mixin(ViewComponentThis!("SignUpForm"));
 
-  override void initialize(Json configSettings = Json(null)) {
+  override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings);
   }
   

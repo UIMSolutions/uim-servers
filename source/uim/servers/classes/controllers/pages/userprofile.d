@@ -11,7 +11,7 @@ import uim.servers;
 class DUserProfilePageController : DPageController {
   mixin(ControllerThis!("UserProfilePageController"));
 
-override void initialize(Json configSettings = Json(null)) {
+override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings);
 
     this

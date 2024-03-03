@@ -11,7 +11,7 @@ import uim.servers;
 class DRegisterPageController : DPageController {
   mixin(ControllerThis!("RegisterPageController"));      
   
-override void initialize(Json configSettings = Json(null)) {
+override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings);
 
     this

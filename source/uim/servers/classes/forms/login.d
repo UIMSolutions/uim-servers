@@ -13,7 +13,7 @@ class DLoginForm : DForm {
 
   mixin(OProperty!("bool", "showLostAccount"));
 
-  override void initialize(Json configSettings = Json(null)) {
+  override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings);
 
     this.showLostAccount(true);

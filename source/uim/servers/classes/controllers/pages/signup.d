@@ -11,7 +11,7 @@ import uim.servers;
 class DSignUpPageController : DPageController {
   mixin(ControllerThis!("SignUpPageController"));
 
-override void initialize(Json configSettings = Json(null)) {
+override bool initialize(IData[string] configSettings = null) {
     debugMethodCall(moduleName!DSignUpPageController~"::DSignUpPageController("~this.name~"):initialize");   
     super.initialize(configSettings);
 

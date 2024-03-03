@@ -11,7 +11,7 @@ import uim.servers;
 class DLogin2PageController : DPageController {
   mixin(ControllerThis!("Login2PageController"));
 
-  override void initialize(Json configSettings = Json(null)) {
+  override bool initialize(IData[string] configSettings = null) {
     super.initialize(configSettings);
 
     this

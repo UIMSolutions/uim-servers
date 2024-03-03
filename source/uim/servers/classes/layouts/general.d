@@ -6,7 +6,7 @@ import uim.servers;
 class DGeneralLayout : DLayout {
   this() { super(); }
 
-  override void initialize(Json configSettings = Json(null)) {
+  override bool initialize(IData[string] configSettings = null) {
     debug writeln("Initialize 'GeneralLayout'"); 
     super.initialize(configSettings);
  
